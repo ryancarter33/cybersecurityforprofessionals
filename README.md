@@ -34,7 +34,14 @@ I am an early-career cybersecurity professional currently building hands-on expe
 | [tls-audits](./tls-audits) | TLS and certificate security audit projects |
 
 ## Website
-Live version of this portfolio: Coming Soon
+## Website
+
+Live Portfolio:  
+https://ryancarter33.github.io/cybersecurityforprofessionals/
+
+Scan the QR code below to open the portfolio:
+
+![Portfolio QR Code](site/assets/qr-code.png)
 
 ## Contact
 LinkedIn: https://www.linkedin.com/in/ryan-carter-78775a396/
