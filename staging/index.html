@@ -135,7 +135,43 @@
             gap: 14px;
             flex-wrap: wrap;
         }
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 50px;
+    align-items: center;
+}
 
+.hero-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-photo img {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 800px) {
+    .hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-photo {
+        justify-content: flex-start;
+        margin-top: 25px;
+    }
+
+    .hero-photo img {
+        width: 220px;
+        height: 220px;
+    }
+}
         .button {
             display: inline-flex;
             align-items: center;
@@ -456,7 +492,10 @@
 <main id="top">
 
     <section class="hero">
-        <div class="container">
+    <div class="container">
+
+        <div class="hero-layout">
+
             <div class="hero-content">
 
                 <div class="eyebrow">Cybersecurity Portfolio</div>
@@ -493,18 +532,30 @@
                     >
                         LinkedIn
                     </a>
+
                     <a
-    class="button button-secondary"
-    href="assets/Ryan-Carter-Resume.pdf"
-    target="_blank"
->
-    Download Resume
-</a>
+                        class="button button-secondary"
+                        href="assets/Ryan-Carter-Resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Download Resume
+                    </a>
                 </div>
 
             </div>
+
+            <div class="hero-photo">
+                <img
+                    src="assets/ryan-headshot.jpg"
+                    alt="Ryan Carter"
+                >
+            </div>
+
         </div>
-    </section>
+
+    </div>
+</section>
 
     <section id="about">
         <div class="container">
