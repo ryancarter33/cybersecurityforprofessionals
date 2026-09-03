@@ -471,13 +471,6 @@
 
 <body>
 
-<div id="gate" style="font-family: sans-serif; max-width: 400px; margin: 100px auto; text-align:center;">
-    <p>This is a work-in-progress preview. Enter the password to continue.</p>
-    <input type="password" id="pw" style="padding:8px;">
-    <button onclick="checkPw()" style="padding:8px;">Enter</button>
-    <p id="err" style="color:red; display:none;">Incorrect password.</p>
-</div>
-
 <div id="content" style="display:none;">
 
 <header>
@@ -1005,19 +998,6 @@
 </footer>
 
 </div>
-
-<script>
-    function checkPw() {
-        const entered = document.getElementById('pw').value;
-
-        if (entered === "StagingPassword1738") {
-            document.getElementById('gate').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        } else {
-            document.getElementById('err').style.display = 'block';
-        }
-    }
-</script>
 
 </body>
 </html>
