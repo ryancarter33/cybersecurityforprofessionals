@@ -1,1 +1,1003 @@
-<h1>Coming soon</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ryan Carter | Cybersecurity Portfolio</title>
+
+    <meta
+        name="description"
+        content="Cybersecurity portfolio focused on governance, risk, compliance, security auditing, network security, cryptography, and PKI."
+    >
+
+    <style>
+        :root {
+            --navy: #0b1729;
+            --navy-light: #13233a;
+            --blue: #2563eb;
+            --blue-light: #dbeafe;
+            --background: #f6f8fb;
+            --white: #ffffff;
+            --text: #172033;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(11, 23, 41, 0.97);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0b1729, #13233a);
+            color: white;
+            padding: 110px 0 100px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            background: rgba(37,99,235,0.16);
+            color: #93c5fd;
+            border: 1px solid rgba(147,197,253,0.25);
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 6vw, 4.8rem);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: #93c5fd;
+        }
+
+        .hero p {
+            max-width: 760px;
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 34px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-photo img {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 800px) {
+    .hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-photo {
+        justify-content: flex-start;
+        margin-top: 25px;
+    }
+
+    .hero-photo img {
+        width: 220px;
+        height: 220px;
+    }
+}
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: white;
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+        }
+
+        section {
+            padding: 88px 0;
+        }
+
+        #about {
+    padding-bottom: 35px;
+}
+
+#education {
+    padding-top: 35px;
+}
+
+        .section-header {
+            margin-bottom: 44px;
+            max-width: 720px;
+        }
+
+        .section-label {
+            color: var(--blue);
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--muted);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 50px;
+        }
+
+        .about-text p {
+            color: #475569;
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+        }
+
+        .focus-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .focus-card h3 {
+            margin-bottom: 18px;
+        }
+
+        .focus-list {
+            list-style: none;
+        }
+
+        .focus-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: #475569;
+        }
+
+        .skills-section {
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .skill-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px;
+            transition: 0.2s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.94rem;
+        }
+
+        .featured-project {
+            background: var(--navy);
+            color: white;
+            border-radius: 18px;
+            padding: 46px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .featured-project .tag {
+            color: #93c5fd;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .featured-project h3 {
+            font-size: 1.7rem;
+            margin-bottom: 14px;
+        }
+
+        .featured-project p {
+            color: #cbd5e1;
+            max-width: 700px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-top: 30px;
+        }
+
+        .portfolio-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px;
+            transition: 0.2s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .portfolio-card p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .portfolio-card a {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        .goals-section {
+            background: white;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .goal {
+            padding: 28px;
+            background: var(--background);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .goal-number {
+            color: var(--blue);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .goal p {
+            color: var(--muted);
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            background: var(--navy);
+            border-radius: 18px;
+            color: white;
+            padding: 60px 30px;
+        }
+
+        .contact-box h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: #cbd5e1;
+            margin-bottom: 26px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            background: #07101e;
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.88rem;
+        }
+
+        footer a {
+            color: #cbd5e1;
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid,
+            .featured-project {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid,
+            .goals-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .skills-grid,
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="content">
+
+<header>
+    <div class="container">
+        <nav>
+            <a href="#top" class="brand">Ryan Carter</a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#development">Development</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#work">Portfolio</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="top">
+
+    <section class="hero">
+    <div class="container">
+
+        <div class="hero-layout">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">Cybersecurity Portfolio</div>
+
+                <h1>
+                    Ryan Carter
+                    <br>
+                    <span>Cybersecurity & Security Governance</span>
+                </h1>
+
+                <p>
+                    Building practical cybersecurity experience across governance,
+                    risk and compliance, security auditing, network defense,
+                    cryptography, PKI, and system security.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="button button-primary" href="#work">View My Work</a>
+
+                    <a
+                        class="button button-secondary"
+                        href="https://github.com/ryancarter33/cybersecurityforprofessionals"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        GitHub
+                    </a>
+
+                    <a
+                        class="button button-secondary"
+                        href="https://www.linkedin.com/in/ryan-carter-78775a396/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        LinkedIn
+                    </a>
+
+                    <a
+                        class="button button-secondary"
+                        href="assets/Ryan-Carter-Resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Download Resume
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="hero-photo">
+                <img
+                    src="assets/ryan-headshot.jpg"
+                    alt="Ryan Carter"
+                >
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    <section id="about">
+        <div class="container">
+
+            <div class="section-header">
+                <div class="section-label">About Me</div>
+                <h2>Connecting technical security with business risk.</h2>
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about-text">
+                    <p>
+                        I am an early-career cybersecurity professional developing
+                        hands-on experience across both technical security and
+                        governance-focused disciplines.
+                    </p>
+
+                    <p>
+                        My interests are especially centered around governance,
+                        risk and compliance, internal security auditing, and the
+                        process of translating technical controls into measurable
+                        business and regulatory requirements.
+                    </p>
+
+                    <p>
+                        This portfolio documents the labs, research, technical
+                        exercises, security assessments, and presentations I complete
+                        as I continue building my cybersecurity career.
+                    </p>
+                </div>
+
+                <div class="focus-card">
+                    <h3>Primary Areas of Focus</h3>
+
+                    <ul class="focus-list">
+                        <li>Governance, Risk & Compliance</li>
+                        <li>Security & Internal Auditing</li>
+                        <li>Cybersecurity Risk Management</li>
+                        <li>Network & System Security</li>
+                        <li>Cryptography & PKI</li>
+                        <li>TLS & Certificate Management</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<section id="education">
+    <div class="container">
+
+        <div class="section-header">
+            <div class="section-label">Education</div>
+            <h2>Academic Background</h2>
+        </div>
+
+        <div
+            class="card"
+            style="
+                display: flex;
+                align-items: center;
+                gap: 1.75rem;
+                padding: 1.75rem;
+            "
+        >
+
+            <img
+                src="assets/slippery-rock-logo.jpg"
+                alt="Slippery Rock University logo"
+                style="
+                    width: 95px;
+                    height: auto;
+                    flex-shrink: 0;
+                "
+            >
+
+            <div>
+                <h3 style="margin-bottom: 0.5rem;">
+                    Slippery Rock University
+                </h3>
+
+                <p style="margin-bottom: 0.35rem;">
+                    <strong>B.S. in Cybersecurity</strong>
+                </p>
+
+                <p>
+                    Minor in Computing
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="certifications">
+    <div class="container">
+
+        <div class="section-header">
+            <div class="section-label">Certifications & Development</div>
+            <h2>Professional Development</h2>
+        </div>
+
+        <div class="skills-grid">
+
+            <div class="card">
+                <h3>CISA</h3>
+                <p><strong>Primary Certification Goal</strong></p>
+                <p>
+                    Building the audit, governance, risk, and control knowledge
+                    needed to work toward the Certified Information Systems Auditor
+                    certification.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>CRISC</h3>
+                <p><strong>Future Certification Goal</strong></p>
+                <p>
+                    Long-term development focused on cybersecurity risk management,
+                    control design, and organizational risk decision-making.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Ongoing Development</h3>
+                <p>
+                    Continuing to build hands-on experience across GRC, security
+                    auditing, risk assessment, network security, system hardening,
+                    cryptography, PKI, and TLS.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="development">
+    <div class="container">
+
+        <div class="section-header">
+            <div class="section-label">Professional Development</div>
+            <h2>Cybersecurity Training & Applied Experience</h2>
+        </div>
+
+        <div class="card">
+            <h3>TEKsystems Cybersecurity Rising Talent Program</h3>
+
+            <p>
+                Intensive cybersecurity training focused on building practical
+                skills across governance, risk and compliance, network security,
+                system hardening, cryptography, PKI, firewall management,
+                security monitoring, and technical communication.
+            </p>
+
+            <p>
+                The program includes hands-on labs, security assessments,
+                team-based exercises, presentations, and documentation designed
+                around real-world enterprise security scenarios.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+    <section id="skills" class="skills-section">
+        <div class="container">
+
+            <div class="section-header">
+                <div class="section-label">Capabilities</div>
+                <h2>Skills at a glance.</h2>
+                <p>
+                    Technical and governance concepts developed through hands-on labs,
+                    research, presentations, and practical exercises.
+                </p>
+            </div>
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+                    <div class="skill-icon">01</div>
+                    <h3>Governance, Risk & Compliance</h3>
+                    <p>
+                        Security policies, risk management, PCI DSS,
+                        compliance controls, control evaluation, and framework concepts.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">02</div>
+                    <h3>Network Security</h3>
+                    <p>
+                        TCP/IP, DNS, DHCP, ARP, VLANs, firewalls, network segmentation,
+                        and traffic analysis.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">03</div>
+                    <h3>Cryptography & PKI</h3>
+                    <p>
+                        AES, RSA, hashing, HMAC, digital signatures, TLS,
+                        certificates, OpenSSL, and key-management concepts.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">04</div>
+                    <h3>System Security</h3>
+                    <p>
+                        Linux hardening, Windows security policies, account security,
+                        permissions, auditing, services, and secure configuration.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">05</div>
+                    <h3>Security Operations</h3>
+                    <p>
+                        Vulnerability assessment, incident response concepts,
+                        network monitoring, traffic inspection, and security-event analysis.
+                    </p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">06</div>
+                    <h3>Virtualization</h3>
+                    <p>
+                        Hyper-V, virtual networking, VM security concepts,
+                        and infrastructure fundamentals.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="work">
+        <div class="container">
+
+            <div class="section-header">
+                <div class="section-label">Portfolio</div>
+                <h2>Featured work.</h2>
+                <p>
+                    Projects and documentation that demonstrate how I apply
+                    cybersecurity concepts rather than simply list them.
+                </p>
+            </div>
+
+            <div class="featured-project">
+
+                <div>
+                    <div class="tag">Featured Project</div>
+                    <h3>TLS & Certificate Security Audit</h3>
+                    <p>
+                        A comparative review of public TLS implementations using
+                        certificate inspection, protocol analysis, cipher evaluation,
+                        severity ratings, and recommended remediation.
+                    </p>
+                </div>
+
+                <a
+                    class="button button-primary"
+                    href="https://github.com/ryancarter33/cybersecurityforprofessionals/tree/main/tls-audits"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Project
+                </a>
+
+            </div>
+
+            <div class="portfolio-grid">
+
+                <div class="portfolio-card">
+                    <h3>Governance, Risk & Compliance</h3>
+                    <p>
+                        Compliance research, security-control analysis,
+                        risk documentation, and framework-focused work.
+                    </p>
+                    <a
+                        href="https://github.com/ryancarter33/cybersecurityforprofessionals/tree/main/grc"
+                        target="_blank"
+                    >
+                        Explore GRC Work →
+                    </a>
+                </div>
+
+                <div class="portfolio-card">
+                    <h3>Research & Writeups</h3>
+                    <p>
+                        Incident research, cybersecurity concepts,
+                        security architecture analysis, and technical explanations.
+                    </p>
+                    <a
+                        href="https://github.com/ryancarter33/cybersecurityforprofessionals/tree/main/research-and-writeups"
+                        target="_blank"
+                    >
+                        View Research →
+                    </a>
+                </div>
+
+                <div class="portfolio-card">
+                    <h3>Security Operations</h3>
+                    <p>
+                        Security monitoring, network analysis,
+                        detection concepts, and SOC-oriented work.
+                    </p>
+                    <a
+                        href="https://github.com/ryancarter33/cybersecurityforprofessionals/tree/main/soc-tools"
+                        target="_blank"
+                    >
+                        View SOC Work →
+                    </a>
+                </div>
+
+                <div class="portfolio-card">
+                    <h3>Presentations</h3>
+                    <p>
+                        Cybersecurity presentation materials covering
+                        technical security, compliance, cryptography,
+                        and related topics.
+                    </p>
+                    <a
+                        href="https://github.com/ryancarter33/cybersecurityforprofessionals/tree/main/presentations"
+                        target="_blank"
+                    >
+                        View Presentations →
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="goals" class="goals-section">
+        <div class="container">
+
+            <div class="section-header">
+                <div class="section-label">Development</div>
+                <h2>Where I'm headed.</h2>
+            </div>
+
+            <div class="goals-grid">
+
+    <div class="goal">
+        <div class="goal-number">GOAL 01</div>
+        <h3>Build a Strong GRC Foundation</h3>
+        <p>
+            Deepen my understanding of governance, risk, compliance,
+            security controls, regulatory requirements, and how organizations
+            manage cybersecurity risk.
+        </p>
+    </div>
+
+    <div class="goal">
+        <div class="goal-number">GOAL 02</div>
+        <h3>Develop as a Security Auditor</h3>
+        <p>
+            Build on that GRC foundation by strengthening my understanding
+            of internal security audits, control effectiveness, evidence review,
+            risk assessment, and remediation.
+        </p>
+    </div>
+
+    <div class="goal">
+        <div class="goal-number">GOAL 03</div>
+        <h3>Work Toward CISA</h3>
+        <p>
+            Continue building the knowledge and professional experience
+            required to eventually pursue the Certified Information Systems
+            Auditor certification.
+        </p>
+    </div>
+
+</div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="contact-box">
+                <h2>Explore My Work</h2>
+
+                <p>
+                    This portfolio will continue to grow as I complete new cybersecurity
+                    projects, labs, research, and certifications.
+                </p>
+
+                <div class="contact-links">
+
+                    <a
+                        class="button button-primary"
+                        href="https://github.com/ryancarter33/cybersecurityforprofessionals"
+                        target="_blank"
+                    >
+                        GitHub
+                    </a>
+
+                    <a
+                        class="button button-secondary"
+                        href="https://www.linkedin.com/in/ryan-carter-78775a396/"
+                        target="_blank"
+                    >
+                        LinkedIn
+                    </a>
+
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+    <h3>Scan to View My Portfolio</h3>
+    <p>Use the QR code below to open the live portfolio site.</p>
+    <img src="assets/qr-code.png"
+         alt="QR code linking to Ryan Carter's cybersecurity portfolio"
+         style="width: 180px; max-width: 100%; margin-top: 1rem;">
+</div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        © 2026 Ryan Carter · Cybersecurity Portfolio ·
+        <a
+            href="https://www.linkedin.com/in/ryan-carter-78775a396/"
+            target="_blank"
+        >
+            LinkedIn
+        </a>
+    </div>
+</footer>
+
+</div>
+
+</body>
+</html>
