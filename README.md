@@ -34,10 +34,10 @@ I am an early-career cybersecurity professional currently building hands-on expe
 | [tls-audits](./tls-audits) | TLS and certificate security audit projects |
 
 ## Website
-## Website
 
-Live Portfolio:  
 https://ryancarter33.github.io/cybersecurityforprofessionals/
+
+## GitHub Repo
 
 Scan the QR code below to open the portfolio:
 
