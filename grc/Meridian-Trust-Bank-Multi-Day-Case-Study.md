@@ -30,6 +30,10 @@ The investigation concluded with containment, eradication, and recovery planning
 
 [View Part 2 – Incident Scoping, Threat Hunting, and Detection Engineering](Incident-Scoping-Threat-Hunting-and-Detection-Case-Study.pdf)
 
+[View Supporting Analysis Workbook]
+
+(Incident-Scoping-and-Threat-Hunting-Workbook.pdf)
+
 ## Key Lessons Learned
 
 1. **A scanner result or single evidence source cannot be treated as the complete answer.** Manual validation removed false positives, while correlation across disk, authentication, endpoint, and firewall evidence revealed several additional days of attacker activity.
