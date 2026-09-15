@@ -536,6 +536,173 @@
         justify-self: end;
     }
 }
+.grc-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.grc-modal.active {
+    display: flex;
+}
+
+.grc-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 16, 30, 0.82);
+    backdrop-filter: blur(5px);
+}
+
+.grc-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(900px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 42px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+}
+
+.grc-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.grc-modal-close:hover {
+    color: var(--navy);
+}
+
+.grc-modal-header {
+    padding-right: 45px;
+    margin-bottom: 30px;
+}
+
+.grc-modal-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.grc-modal-header p {
+    color: var(--muted);
+    max-width: 760px;
+}
+
+.phishing-question {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.phishing-question h3 {
+    font-size: 1rem;
+    margin-bottom: 14px;
+}
+
+.phishing-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.phishing-option {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--background);
+}
+
+.phishing-option:hover {
+    border-color: var(--blue);
+}
+
+.phishing-result {
+    margin-top: 26px;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+
+.phishing-result h3 {
+    margin-bottom: 8px;
+}
+
+.phishing-result p {
+    color: #475569;
+}
+
+.phishing-result.low {
+    border-left: 5px solid #16a34a;
+}
+
+.phishing-result.medium {
+    border-left: 5px solid #d97706;
+}
+
+.phishing-result.high {
+    border-left: 5px solid #dc2626;
+}
+
+.grc-assessment-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.grc-secondary-button {
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--navy);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.grc-secondary-button:hover {
+    background: var(--background);
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {
+    .grc-modal {
+        padding: 12px;
+    }
+
+    .grc-modal-panel {
+        padding: 28px 20px;
+    }
+
+    .grc-modal-header {
+        padding-right: 30px;
+    }
+
+    .phishing-options {
+        flex-direction: column;
+    }
+}
         @media (max-width: 850px) {
             .nav-links {
                 display: none;
@@ -1057,6 +1224,29 @@
 
     </div>
 </section>
+<div class="grc-modal" id="grc-modal" aria-hidden="true">
+    <div class="grc-modal-overlay" id="grc-modal-overlay"></div>
+
+    <div class="grc-modal-panel" role="dialog" aria-modal="true" aria-labelledby="grc-modal-title">
+
+        <button class="grc-modal-close" id="grc-modal-close" aria-label="Close resource">
+            &times;
+        </button>
+
+        <div class="grc-modal-header">
+            <div class="section-label">Interactive GRC Tool</div>
+            <h2 id="grc-modal-title">Phishing Message Assessment</h2>
+            <p id="grc-modal-intro">
+                Answer the questions below based on the message you are reviewing.
+                This tool is intended as an educational screening resource and is
+                not a replacement for your organization's security procedures.
+            </p>
+        </div>
+
+        <div id="grc-modal-content"></div>
+
+    </div>
+</div>
     <section id="goals" class="goals-section">
         <div class="container">
 
@@ -1230,6 +1420,239 @@
 
         updateGrcResource();
     });
+const grcModal = document.getElementById("grc-modal");
+const grcModalOverlay = document.getElementById("grc-modal-overlay");
+const grcModalClose = document.getElementById("grc-modal-close");
+const grcModalTitle = document.getElementById("grc-modal-title");
+const grcModalIntro = document.getElementById("grc-modal-intro");
+const grcModalContent = document.getElementById("grc-modal-content");
+
+function openGrcModal() {
+    grcModal.classList.add("active");
+    grcModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+}
+
+function closeGrcModal() {
+    grcModal.classList.remove("active");
+    grcModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+}
+
+grcModalClose.addEventListener("click", closeGrcModal);
+grcModalOverlay.addEventListener("click", closeGrcModal);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && grcModal.classList.contains("active")) {
+        closeGrcModal();
+    }
+});
+
+const phishingQuestions = [
+    {
+        text: "Does the sender's email domain look unusual, misspelled, or different from the organization they claim to represent?",
+        weight: 2
+    },
+    {
+        text: "Does the message create unusual urgency, pressure, or fear to make you act quickly?",
+        weight: 1
+    },
+    {
+        text: "Does the message ask you to enter or provide a password, verification code, or other login information?",
+        weight: 3
+    },
+    {
+        text: "Does the message ask you to approve an unexpected MFA or authentication request?",
+        weight: 3
+    },
+    {
+        text: "Does the message contain an unexpected attachment or file?",
+        weight: 2
+    },
+    {
+        text: "Does the message contain a link you were not expecting or that leads somewhere different from the displayed address?",
+        weight: 2
+    },
+    {
+        text: "Does the message request money, gift cards, banking information, a wire transfer, or a change to payment details?",
+        weight: 3
+    },
+    {
+        text: "Is the request unusual for the person or organization that supposedly sent it?",
+        weight: 2
+    },
+    {
+        text: "Does the message ask you to bypass a normal process, security control, or approval procedure?",
+        weight: 3
+    },
+    {
+        text: "Are you unable to independently verify the request using a trusted phone number, known website, or separate communication channel?",
+        weight: 2
+    }
+];
+
+function loadPhishingAssessment() {
+    grcModalTitle.textContent = "Phishing Message Assessment";
+
+    grcModalIntro.textContent =
+        "Answer the questions below based on the message you are reviewing. This is an educational screening tool and should be used alongside your organization's reporting and verification procedures.";
+
+    let html = '<form id="phishing-form">';
+
+    phishingQuestions.forEach(function (question, index) {
+        html += `
+            <div class="phishing-question">
+                <h3>${index + 1}. ${question.text}</h3>
+
+                <div class="phishing-options">
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="phishing-${index}"
+                            value="yes"
+                            required
+                        >
+                        Yes
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="phishing-${index}"
+                            value="no"
+                        >
+                        No
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="phishing-${index}"
+                            value="unsure"
+                        >
+                        Unsure
+                    </label>
+
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+        <div class="grc-assessment-actions">
+            <button class="button button-primary" type="submit">
+                Evaluate Message
+            </button>
+
+            <button
+                class="grc-secondary-button"
+                type="button"
+                id="phishing-reset"
+            >
+                Reset
+            </button>
+        </div>
+
+        <div id="phishing-result"></div>
+    `;
+
+    html += "</form>";
+
+    grcModalContent.innerHTML = html;
+
+    const phishingForm = document.getElementById("phishing-form");
+    const phishingReset = document.getElementById("phishing-reset");
+
+    phishingForm.addEventListener("submit", evaluatePhishingAssessment);
+
+    phishingReset.addEventListener("click", function () {
+        phishingForm.reset();
+        document.getElementById("phishing-result").innerHTML = "";
+    });
+
+    openGrcModal();
+}
+
+function evaluatePhishingAssessment(event) {
+    event.preventDefault();
+
+    let score = 0;
+    let warningCount = 0;
+
+    phishingQuestions.forEach(function (question, index) {
+        const selected = document.querySelector(
+            `input[name="phishing-${index}"]:checked`
+        );
+
+        if (!selected) {
+            return;
+        }
+
+        if (selected.value === "yes") {
+            score += question.weight;
+            warningCount++;
+        }
+
+        if (selected.value === "unsure") {
+            score += 1;
+        }
+    });
+
+    let riskClass;
+    let riskTitle;
+    let recommendation;
+
+    if (score <= 4) {
+        riskClass = "low";
+        riskTitle = "Lower Concern";
+        recommendation =
+            "Few strong phishing indicators were identified. Continue to use normal caution, verify unexpected requests, and avoid entering credentials through links received in unsolicited messages.";
+    } else if (score <= 10) {
+        riskClass = "medium";
+        riskTitle = "Verification Recommended";
+        recommendation =
+            "Several suspicious indicators were identified. Do not act on the message until the sender or request has been independently verified using a trusted communication method.";
+    } else {
+        riskClass = "high";
+        riskTitle = "High Risk";
+        recommendation =
+            "Multiple strong phishing indicators were identified. Do not click links, open attachments, provide credentials, approve authentication requests, or send money. Report the message through your organization's security or phishing-reporting process.";
+    }
+
+    document.getElementById("phishing-result").innerHTML = `
+        <div class="phishing-result ${riskClass}">
+            <h3>${riskTitle}</h3>
+
+            <p>
+                The assessment identified ${warningCount}
+                direct warning indicator${warningCount === 1 ? "" : "s"}.
+            </p>
+
+            <p style="margin-top: 10px;">
+                ${recommendation}
+            </p>
+
+            <p style="margin-top: 14px; font-size: 0.88rem; color: #64748b;">
+                This result is a general educational screening assessment and
+                does not guarantee that a message is legitimate or malicious.
+            </p>
+        </div>
+    `;
+
+    document
+        .getElementById("phishing-result")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+grcAction.addEventListener("click", function () {
+    if (currentGrcResource === 0) {
+        loadPhishingAssessment();
+        return;
+    }
+
+    alert("This resource is currently being built.");
+});
 </script>
 </body>
 </html>
