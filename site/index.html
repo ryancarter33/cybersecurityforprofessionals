@@ -1490,7 +1490,56 @@ const phishingQuestions = [
         weight: 2
     }
 ];
-
+const vendorRiskQuestions = [
+    {
+        text: "Will the vendor access, store, process, or transmit sensitive company or customer data?",
+        weight: 3
+    },
+    {
+        text: "Will the vendor have remote or privileged access to internal systems?",
+        weight: 3
+    },
+    {
+        text: "Does the vendor lack multi-factor authentication for administrative or remote access?",
+        weight: 3
+    },
+    {
+        text: "Does the vendor lack encryption for sensitive data at rest or in transit?",
+        weight: 3
+    },
+    {
+        text: "Does the vendor lack a documented incident response process?",
+        weight: 2
+    },
+    {
+        text: "Is the vendor unable to provide recent independent security assurance, such as a SOC 2 report or equivalent assessment?",
+        weight: 2
+    },
+    {
+        text: "Does the vendor lack a formal vulnerability management or patching process?",
+        weight: 2
+    },
+    {
+        text: "Does the vendor use subcontractors or other third parties without clearly defined security oversight?",
+        weight: 2
+    },
+    {
+        text: "Are breach notification requirements unclear or missing from the agreement?",
+        weight: 2
+    },
+    {
+        text: "Does the vendor lack documented backup, recovery, or business continuity procedures?",
+        weight: 2
+    },
+    {
+        text: "Is ownership of the vendor relationship or security review unclear internally?",
+        weight: 1
+    },
+    {
+        text: "Has the vendor experienced a recent security incident that has not been fully explained or remediated?",
+        weight: 3
+    }
+];
 function loadPhishingAssessment() {
     grcModalTitle.textContent = "Phishing Message Assessment";
 
@@ -1644,7 +1693,159 @@ function evaluatePhishingAssessment(event) {
         .getElementById("phishing-result")
         .scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
+function loadVendorRiskAssessment() {
+    grcModalTitle.textContent = "Vendor Risk Questionnaire";
 
+    grcModalIntro.textContent =
+        "Answer the questions below based on the third party being reviewed. This tool is intended to help identify areas that may require deeper due diligence and does not represent a formal vendor-risk determination.";
+
+    let html = '<form id="vendor-risk-form">';
+
+    vendorRiskQuestions.forEach(function (question, index) {
+        html += `
+            <div class="phishing-question">
+                <h3>${index + 1}. ${question.text}</h3>
+
+                <div class="phishing-options">
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="vendor-${index}"
+                            value="yes"
+                            required
+                        >
+                        Yes
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="vendor-${index}"
+                            value="no"
+                        >
+                        No
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="vendor-${index}"
+                            value="unsure"
+                        >
+                        Unsure
+                    </label>
+
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+        <div class="grc-assessment-actions">
+            <button class="button button-primary" type="submit">
+                Evaluate Vendor
+            </button>
+
+            <button
+                class="grc-secondary-button"
+                type="button"
+                id="vendor-reset"
+            >
+                Reset
+            </button>
+        </div>
+
+        <div id="vendor-result"></div>
+    `;
+
+    html += "</form>";
+
+    grcModalContent.innerHTML = html;
+
+    const vendorForm = document.getElementById("vendor-risk-form");
+    const vendorReset = document.getElementById("vendor-reset");
+
+    vendorForm.addEventListener("submit", evaluateVendorRisk);
+
+    vendorReset.addEventListener("click", function () {
+        vendorForm.reset();
+        document.getElementById("vendor-result").innerHTML = "";
+    });
+
+    openGrcModal();
+}
+
+function evaluateVendorRisk(event) {
+    event.preventDefault();
+
+    let score = 0;
+    let concernCount = 0;
+
+    vendorRiskQuestions.forEach(function (question, index) {
+        const selected = document.querySelector(
+            `input[name="vendor-${index}"]:checked`
+        );
+
+        if (!selected) {
+            return;
+        }
+
+        if (selected.value === "yes") {
+            score += question.weight;
+            concernCount++;
+        }
+
+        if (selected.value === "unsure") {
+            score += 1;
+        }
+    });
+
+    let riskClass;
+    let riskTitle;
+    let recommendation;
+
+    if (score <= 6) {
+        riskClass = "low";
+        riskTitle = "Lower Vendor Risk";
+        recommendation =
+            "Few major risk indicators were identified. Continue standard due diligence, confirm contractual requirements, and maintain periodic review of the vendor relationship.";
+    } else if (score <= 14) {
+        riskClass = "medium";
+        riskTitle = "Moderate Review Needed";
+        recommendation =
+            "Several areas may require additional validation. Obtain supporting evidence, clarify security responsibilities, and resolve material gaps before relying heavily on the vendor.";
+    } else {
+        riskClass = "high";
+        riskTitle = "Elevated Vendor Risk";
+        recommendation =
+            "Multiple significant risk indicators were identified. A deeper security review should be completed before approval, including evidence review, contract requirements, access limitations, remediation commitments, and management acceptance of any remaining risk.";
+    }
+
+    document.getElementById("vendor-result").innerHTML = `
+        <div class="phishing-result ${riskClass}">
+            <h3>${riskTitle}</h3>
+
+            <p>
+                The assessment identified ${concernCount}
+                direct risk concern${concernCount === 1 ? "" : "s"}.
+            </p>
+
+            <p style="margin-top: 10px;">
+                ${recommendation}
+            </p>
+
+            <p style="margin-top: 14px; font-size: 0.88rem; color: #64748b;">
+                This questionnaire is an educational portfolio tool and is not
+                a substitute for a formal third-party risk assessment.
+            </p>
+        </div>
+    `;
+
+    document
+        .getElementById("vendor-result")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
 grcAction.addEventListener("click", function () {
     if (currentGrcResource === 0) {
         loadPhishingAssessment();
