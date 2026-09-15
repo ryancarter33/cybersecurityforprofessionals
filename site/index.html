@@ -1846,9 +1846,15 @@ function evaluateVendorRisk(event) {
         .getElementById("vendor-result")
         .scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
+
 grcAction.addEventListener("click", function () {
     if (currentGrcResource === 0) {
         loadPhishingAssessment();
+        return;
+    }
+
+    if (currentGrcResource === 1) {
+        loadVendorRiskAssessment();
         return;
     }
 
