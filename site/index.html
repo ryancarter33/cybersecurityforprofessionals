@@ -1540,6 +1540,88 @@ const vendorRiskQuestions = [
         weight: 3
     }
 ];
+const controlMappings = [
+    {
+        theme: "Access Control",
+        soc2: "Logical access controls support the Security criteria by limiting access to authorized users.",
+        sox: "Access controls help protect financially significant systems and support reliable financial reporting.",
+        pci: "Access to system components and cardholder data should be restricted based on business need.",
+        example: "Access is granted only to approved users based on job responsibilities.",
+        evidence: "User access lists, approval tickets, role assignments, access-review records."
+    },
+    {
+        theme: "Privileged Access",
+        soc2: "Elevated access should be restricted, authorized, and monitored.",
+        sox: "Administrator access to systems supporting financial reporting should be limited and reviewed.",
+        pci: "Privileged accounts should be controlled and monitored to reduce unauthorized access.",
+        example: "Administrative privileges are limited to approved personnel and reviewed regularly.",
+        evidence: "Privileged-account lists, PAM records, administrator logs, periodic access reviews."
+    },
+    {
+        theme: "Authentication & MFA",
+        soc2: "Strong authentication supports protection against unauthorized access.",
+        sox: "MFA can strengthen access controls over sensitive and financially relevant systems.",
+        pci: "Multi-factor authentication is required for specified access scenarios.",
+        example: "MFA is required for administrative and remote access.",
+        evidence: "Identity-provider settings, MFA policy, authentication configuration, enrollment records."
+    },
+    {
+        theme: "Logging & Monitoring",
+        soc2: "Security-relevant activity should be logged and monitored for suspicious events.",
+        sox: "Logging can support oversight of changes, access, and activity affecting key systems.",
+        pci: "Audit logs should be generated, protected, retained, and reviewed.",
+        example: "Security logs are centrally collected and monitored for suspicious activity.",
+        evidence: "SIEM configuration, log-retention settings, sample alerts, review records."
+    },
+    {
+        theme: "Change Management",
+        soc2: "System changes should be authorized, tested, documented, and controlled.",
+        sox: "Change management is a core IT General Control supporting reliable financial systems.",
+        pci: "Changes to in-scope systems should follow controlled and documented processes.",
+        example: "Production changes require approval, testing, and documentation before implementation.",
+        evidence: "Change tickets, approvals, test results, implementation records."
+    },
+    {
+        theme: "Incident Response",
+        soc2: "Organizations should detect, respond to, and recover from security incidents.",
+        sox: "Incident response can support continuity and reliability of financially significant systems.",
+        pci: "Organizations should maintain and test an incident-response plan.",
+        example: "Security incidents are escalated, contained, documented, and reviewed.",
+        evidence: "Incident-response plan, incident tickets, escalation records, post-incident reports."
+    },
+    {
+        theme: "Data Protection",
+        soc2: "Sensitive information should be protected from unauthorized disclosure or modification.",
+        sox: "Controls protect business-critical and financial information from unauthorized access or change.",
+        pci: "Cardholder data must be protected during storage and transmission.",
+        example: "Sensitive data is encrypted at rest and in transit.",
+        evidence: "Encryption settings, TLS configuration, key-management records, data-handling standards."
+    },
+    {
+        theme: "Vulnerability Management",
+        soc2: "Organizations should identify and address vulnerabilities that could affect system security.",
+        sox: "Vulnerability management can support the reliability and security of financially relevant systems.",
+        pci: "Regular vulnerability scanning, patching, and remediation are required.",
+        example: "Critical vulnerabilities are remediated within defined risk-based timelines.",
+        evidence: "Scan reports, remediation tickets, patch records, exception documentation."
+    },
+    {
+        theme: "Third-Party Risk",
+        soc2: "Third parties affecting security commitments should be evaluated and monitored.",
+        sox: "Service providers supporting financial systems may require oversight and control assurance.",
+        pci: "Third-party service providers with access to cardholder data or systems must be managed.",
+        example: "Vendors with access to sensitive systems are risk-assessed before onboarding.",
+        evidence: "Vendor questionnaires, contracts, SOC reports, security-review records."
+    },
+    {
+        theme: "User Access Reviews",
+        soc2: "User access should remain appropriate as roles and responsibilities change.",
+        sox: "Periodic access reviews help demonstrate continued effectiveness of IT General Controls.",
+        pci: "Access rights should be reviewed and adjusted as needed.",
+        example: "Managers review user access quarterly and remove unnecessary privileges.",
+        evidence: "Quarterly access reviews, approval records, terminated-user samples, removal evidence."
+    }
+];
 function loadPhishingAssessment() {
     grcModalTitle.textContent = "Phishing Message Assessment";
 
@@ -1775,7 +1857,94 @@ function loadVendorRiskAssessment() {
 
     openGrcModal();
 }
+function loadControlMapping() {
+    grcModalTitle.textContent = "Common Cybersecurity Control Mapping";
 
+    grcModalIntro.textContent =
+        "Explore how common security-control themes overlap across SOC 2, SOX-related IT General Controls, and PCI DSS. These frameworks serve different purposes, so the goal is to compare related control objectives rather than treat them as identical.";
+
+    let html = `
+        <div style="margin-bottom: 24px;">
+            <label for="control-theme-select" style="display:block; font-weight:700; margin-bottom:8px;">
+                Select a control theme
+            </label>
+
+            <select
+                id="control-theme-select"
+                style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid var(--border);
+                    border-radius: 8px;
+                    font-family: inherit;
+                    font-size: 0.95rem;
+                    background: white;
+                "
+            >
+    `;
+
+    controlMappings.forEach(function (mapping, index) {
+        html += `
+            <option value="${index}">
+                ${mapping.theme}
+            </option>
+        `;
+    });
+
+    html += `
+            </select>
+        </div>
+
+        <div id="control-mapping-result"></div>
+    `;
+
+    grcModalContent.innerHTML = html;
+
+    const controlThemeSelect = document.getElementById("control-theme-select");
+
+    function renderControlMapping(index) {
+        const mapping = controlMappings[index];
+
+        document.getElementById("control-mapping-result").innerHTML = `
+            <div class="phishing-result">
+                <h3>${mapping.theme}</h3>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>SOC 2</strong></p>
+                    <p style="margin-top: 5px;">${mapping.soc2}</p>
+                </div>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>SOX / ITGC</strong></p>
+                    <p style="margin-top: 5px;">${mapping.sox}</p>
+                </div>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>PCI DSS</strong></p>
+                    <p style="margin-top: 5px;">${mapping.pci}</p>
+                </div>
+
+                <div style="margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border);">
+                    <p><strong>Example Control</strong></p>
+                    <p style="margin-top: 5px;">${mapping.example}</p>
+                </div>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>Example Audit Evidence</strong></p>
+                    <p style="margin-top: 5px;">${mapping.evidence}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    controlThemeSelect.addEventListener("change", function () {
+        renderControlMapping(Number(controlThemeSelect.value));
+    });
+
+    renderControlMapping(0);
+
+    openGrcModal();
+}
 function evaluateVendorRisk(event) {
     event.preventDefault();
 
@@ -1855,6 +2024,11 @@ grcAction.addEventListener("click", function () {
 
     if (currentGrcResource === 1) {
         loadVendorRiskAssessment();
+        return;
+    }
+
+    if (currentGrcResource === 2) {
+        loadControlMapping();
         return;
     }
 
