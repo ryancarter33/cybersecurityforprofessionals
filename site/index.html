@@ -439,7 +439,103 @@
         footer a {
             color: #cbd5e1;
         }
+#grc-resources {
+    background: #eef3f9;
+}
 
+.grc-carousel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: center;
+}
+
+.grc-resource-card {
+    background: var(--navy);
+    color: white;
+    border-radius: 18px;
+    padding: 44px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.grc-resource-number {
+    color: #93c5fd;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    margin-bottom: 14px;
+}
+
+.grc-resource-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+}
+
+.grc-resource-card p {
+    color: #cbd5e1;
+    max-width: 760px;
+    margin-bottom: 26px;
+}
+
+.grc-resource-card .button {
+    width: fit-content;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.grc-progress {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-top: 24px;
+}
+
+.grc-arrow {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--navy);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07);
+}
+
+.grc-arrow:hover {
+    background: var(--blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+    .grc-carousel {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .grc-resource-card {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        padding: 30px;
+    }
+
+    #grc-prev {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    #grc-next {
+        grid-column: 2;
+        justify-self: end;
+    }
+}
         @media (max-width: 850px) {
             .nav-links {
                 display: none;
@@ -896,7 +992,71 @@
 
         </div>
     </section>
+<section id="grc-resources">
+    <div class="container">
 
+        <div class="section-header">
+            <div class="section-label">GRC Resources & Perspectives</div>
+            <h2>Practical tools for security and risk decision-making.</h2>
+            <p>
+                Interactive resources and reference material focused on governance,
+                risk, compliance, security awareness, control evaluation, and
+                third-party risk.
+            </p>
+        </div>
+
+        <div class="grc-carousel">
+
+            <button
+                class="grc-arrow"
+                id="grc-prev"
+                aria-label="Previous GRC resource"
+            >
+                &#8592;
+            </button>
+
+            <div class="grc-resource-card">
+
+                <div class="grc-resource-number" id="grc-number">
+                    RESOURCE 01
+                </div>
+
+                <h3 id="grc-title">
+                    Phishing Message Assessment
+                </h3>
+
+                <p id="grc-description">
+                    Review common phishing indicators and determine whether a
+                    suspicious message should be trusted, independently verified,
+                    or reported to a security team.
+                </p>
+
+                <button
+                    class="button button-primary"
+                    id="grc-action"
+                    type="button"
+                >
+                    Start Assessment
+                </button>
+
+                <div class="grc-progress" id="grc-progress">
+                    1 / 5
+                </div>
+
+            </div>
+
+            <button
+                class="grc-arrow"
+                id="grc-next"
+                aria-label="Next GRC resource"
+            >
+                &#8594;
+            </button>
+
+        </div>
+
+    </div>
+</section>
     <section id="goals" class="goals-section">
         <div class="container">
 
@@ -998,6 +1158,78 @@
 </footer>
 
 </div>
+<script>
+    const grcResources = [
+        {
+            number: "RESOURCE 01",
+            title: "Phishing Message Assessment",
+            description:
+                "Review common phishing indicators and determine whether a suspicious message should be trusted, independently verified, or reported to a security team.",
+            action: "Start Assessment"
+        },
+        {
+            number: "RESOURCE 02",
+            title: "Vendor Risk Questionnaire",
+            description:
+                "Evaluate common third-party security considerations including access control, data protection, incident response, vulnerability management, and vendor oversight.",
+            action: "Open Questionnaire"
+        },
+        {
+            number: "RESOURCE 03",
+            title: "Common Cybersecurity Control Mapping",
+            description:
+                "Compare overlapping security-control themes across SOC 2, SOX-related IT General Controls, and PCI DSS.",
+            action: "Explore Mapping"
+        },
+        {
+            number: "RESOURCE 04",
+            title: "Control Testing Checklist",
+            description:
+                "Walk through the key steps used to evaluate control design, collect evidence, test operating effectiveness, document exceptions, and verify remediation.",
+            action: "View Checklist"
+        },
+        {
+            number: "RESOURCE 05",
+            title: "Risk Assessment & Risk Register",
+            description:
+                "Identify threats, vulnerabilities, likelihood, impact, existing controls, residual risk, ownership, and recommended treatment.",
+            action: "Explore Risk Tool"
+        }
+    ];
 
+    let currentGrcResource = 0;
+
+    const grcNumber = document.getElementById("grc-number");
+    const grcTitle = document.getElementById("grc-title");
+    const grcDescription = document.getElementById("grc-description");
+    const grcAction = document.getElementById("grc-action");
+    const grcProgress = document.getElementById("grc-progress");
+
+    function updateGrcResource() {
+        const resource = grcResources[currentGrcResource];
+
+        grcNumber.textContent = resource.number;
+        grcTitle.textContent = resource.title;
+        grcDescription.textContent = resource.description;
+        grcAction.textContent = resource.action;
+        grcProgress.textContent =
+            `${currentGrcResource + 1} / ${grcResources.length}`;
+    }
+
+    document.getElementById("grc-next").addEventListener("click", function () {
+        currentGrcResource =
+            (currentGrcResource + 1) % grcResources.length;
+
+        updateGrcResource();
+    });
+
+    document.getElementById("grc-prev").addEventListener("click", function () {
+        currentGrcResource =
+            (currentGrcResource - 1 + grcResources.length) %
+            grcResources.length;
+
+        updateGrcResource();
+    });
+</script>
 </body>
 </html>
