@@ -337,7 +337,44 @@
             color: #cbd5e1;
             max-width: 700px;
         }
+.case-study-highlight {
+    margin-top: 22px;
+    padding: 24px 28px;
+    background: #eef3f9;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue);
+    border-radius: 12px;
+    transition: 0.2s ease;
+}
 
+.case-study-highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.case-study-highlight .case-study-label {
+    color: var(--blue);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.case-study-highlight h3 {
+    margin-bottom: 10px;
+}
+
+.case-study-highlight p {
+    color: var(--muted);
+    margin-bottom: 14px;
+    max-width: 900px;
+}
+
+.case-study-highlight a {
+    color: var(--blue);
+    font-weight: 600;
+}
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -439,7 +476,429 @@
         footer a {
             color: #cbd5e1;
         }
+#grc-resources {
+    background: #eef3f9;
+}
 
+.grc-carousel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: center;
+}
+
+.grc-resource-card {
+    background: var(--navy);
+    color: white;
+    border-radius: 18px;
+    padding: 44px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.grc-resource-number {
+    color: #93c5fd;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    margin-bottom: 14px;
+}
+
+.grc-resource-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+}
+
+.grc-resource-card p {
+    color: #cbd5e1;
+    max-width: 760px;
+    margin-bottom: 26px;
+}
+
+.grc-resource-card .button {
+    width: fit-content;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.grc-progress {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-top: 24px;
+}
+
+.grc-arrow {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--navy);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07);
+}
+
+.grc-arrow:hover {
+    background: var(--blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+    .grc-carousel {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .grc-resource-card {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        padding: 30px;
+    }
+
+    #grc-prev {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    #grc-next {
+        grid-column: 2;
+        justify-self: end;
+    }
+}
+.grc-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.grc-modal.active {
+    display: flex;
+}
+
+.grc-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 16, 30, 0.82);
+    backdrop-filter: blur(5px);
+}
+
+.grc-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(900px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 42px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+}
+
+.grc-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.grc-modal-close:hover {
+    color: var(--navy);
+}
+
+.grc-modal-header {
+    padding-right: 45px;
+    margin-bottom: 30px;
+}
+
+.grc-modal-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.grc-modal-header p {
+    color: var(--muted);
+    max-width: 760px;
+}
+
+.phishing-question {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.phishing-question h3 {
+    font-size: 1rem;
+    margin-bottom: 14px;
+}
+
+.phishing-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.phishing-option {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--background);
+}
+
+.phishing-option:hover {
+    border-color: var(--blue);
+}
+
+.phishing-result {
+    margin-top: 26px;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+
+.phishing-result h3 {
+    margin-bottom: 8px;
+}
+
+.phishing-result p {
+    color: #475569;
+}
+
+.phishing-result.low {
+    border-left: 5px solid #16a34a;
+}
+
+.phishing-result.medium {
+    border-left: 5px solid #d97706;
+}
+
+.phishing-result.high {
+    border-left: 5px solid #dc2626;
+}
+
+.grc-assessment-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.grc-secondary-button {
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--navy);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.grc-secondary-button:hover {
+    background: var(--background);
+}
+.control-test-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    background: var(--background);
+}
+
+.control-test-stage-label {
+    color: var(--blue);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.control-test-card h3 {
+    margin-bottom: 10px;
+}
+
+.control-test-card p {
+    color: #475569;
+    margin-bottom: 18px;
+}
+
+.control-test-items {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.control-test-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.control-test-item input {
+    margin-top: 4px;
+}
+
+.control-test-progress {
+    margin-bottom: 24px;
+}
+
+.control-test-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.control-test-progress-fill {
+    height: 100%;
+    background: var(--blue);
+    transition: width 0.25s ease;
+}
+
+.control-test-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+}
+.risk-tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.risk-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.risk-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.risk-field label {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.risk-field input,
+.risk-field select,
+.risk-field textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: white;
+    color: var(--text);
+}
+
+.risk-field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.risk-score-box {
+    margin-top: 24px;
+    padding: 22px;
+    border-radius: 12px;
+    background: var(--background);
+    border: 1px solid var(--border);
+}
+
+.risk-score-box h3 {
+    margin-bottom: 8px;
+}
+
+.risk-score-low {
+    border-left: 5px solid #16a34a;
+}
+
+.risk-score-medium {
+    border-left: 5px solid #d97706;
+}
+
+.risk-score-high {
+    border-left: 5px solid #ea580c;
+}
+
+.risk-score-critical {
+    border-left: 5px solid #dc2626;
+}
+
+.risk-register-summary {
+    margin-top: 20px;
+    display: grid;
+    gap: 10px;
+}
+
+.risk-register-summary div {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+}
+
+@media (max-width: 650px) {
+    .risk-tool-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .risk-field.full-width {
+        grid-column: auto;
+    }
+}
+body.modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {
+    .grc-modal {
+        padding: 12px;
+    }
+
+    .grc-modal-panel {
+        padding: 28px 20px;
+    }
+
+    .grc-modal-header {
+        padding-right: 30px;
+    }
+
+    .phishing-options {
+        flex-direction: column;
+    }
+}
         @media (max-width: 850px) {
             .nav-links {
                 display: none;
@@ -832,7 +1291,35 @@
                 </a>
 
             </div>
+<div class="case-study-highlight">
 
+    <div class="case-study-label">
+        GRC & Incident Response Case Study
+    </div>
+
+    <h3>
+        Meridian Trust Bank Security Assessment & Incident Investigation
+    </h3>
+
+    <p>
+        A multi-day case study covering vulnerability assessment, CVE validation,
+        digital forensics, threat hunting, and incident response. I traced the
+        attack from initial exploitation through privilege escalation, persistence,
+        lateral movement, and data staging, then mapped attacker behavior to MITRE
+        ATT&CK and developed Sigma detection rules. The project concluded with
+        remediation priorities, containment and recovery planning, and a
+        post-incident review focused on control gaps and prevention.
+    </p>
+
+    <a
+        href="https://github.com/ryancarter33/cybersecurityforprofessionals/tree/main/grc"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        View GRC Case Study →
+    </a>
+
+</div>
             <div class="portfolio-grid">
 
                 <div class="portfolio-card">
@@ -896,7 +1383,94 @@
 
         </div>
     </section>
+<section id="grc-resources">
+    <div class="container">
 
+        <div class="section-header">
+            <div class="section-label">GRC Resources & Perspectives</div>
+            <h2>Practical tools for security and risk decision-making.</h2>
+            <p>
+                Interactive resources and reference material focused on governance,
+                risk, compliance, security awareness, control evaluation, and
+                third-party risk.
+            </p>
+        </div>
+
+        <div class="grc-carousel">
+
+            <button
+                class="grc-arrow"
+                id="grc-prev"
+                aria-label="Previous GRC resource"
+            >
+                &#8592;
+            </button>
+
+            <div class="grc-resource-card">
+
+                <div class="grc-resource-number" id="grc-number">
+                    RESOURCE 01
+                </div>
+
+                <h3 id="grc-title">
+                    Phishing Message Assessment
+                </h3>
+
+                <p id="grc-description">
+                    Review common phishing indicators and determine whether a
+                    suspicious message should be trusted, independently verified,
+                    or reported to a security team.
+                </p>
+
+                <button
+                    class="button button-primary"
+                    id="grc-action"
+                    type="button"
+                >
+                    Start Assessment
+                </button>
+
+                <div class="grc-progress" id="grc-progress">
+                    1 / 5
+                </div>
+
+            </div>
+
+            <button
+                class="grc-arrow"
+                id="grc-next"
+                aria-label="Next GRC resource"
+            >
+                &#8594;
+            </button>
+
+        </div>
+
+    </div>
+</section>
+<div class="grc-modal" id="grc-modal" aria-hidden="true">
+    <div class="grc-modal-overlay" id="grc-modal-overlay"></div>
+
+    <div class="grc-modal-panel" role="dialog" aria-modal="true" aria-labelledby="grc-modal-title">
+
+        <button class="grc-modal-close" id="grc-modal-close" aria-label="Close resource">
+            &times;
+        </button>
+
+        <div class="grc-modal-header">
+            <div class="section-label">Interactive GRC Tool</div>
+            <h2 id="grc-modal-title">Phishing Message Assessment</h2>
+            <p id="grc-modal-intro">
+                Answer the questions below based on the message you are reviewing.
+                This tool is intended as an educational screening resource and is
+                not a replacement for your organization's security procedures.
+            </p>
+        </div>
+
+        <div id="grc-modal-content"></div>
+
+    </div>
+</div>
     <section id="goals" class="goals-section">
         <div class="container">
 
@@ -998,6 +1572,1150 @@
 </footer>
 
 </div>
+<script>
+    const grcResources = [
+        {
+            number: "RESOURCE 01",
+            title: "Phishing Message Assessment",
+            description:
+                "Review common phishing indicators and determine whether a suspicious message should be trusted, independently verified, or reported to a security team.",
+            action: "Start Assessment"
+        },
+        {
+            number: "RESOURCE 02",
+            title: "Vendor Risk Questionnaire",
+            description:
+                "Evaluate common third-party security considerations including access control, data protection, incident response, vulnerability management, and vendor oversight.",
+            action: "Open Questionnaire"
+        },
+        {
+            number: "RESOURCE 03",
+            title: "Common Cybersecurity Control Mapping",
+            description:
+                "Compare overlapping security-control themes across SOC 2, SOX-related IT General Controls, and PCI DSS.",
+            action: "Explore Mapping"
+        },
+        {
+            number: "RESOURCE 04",
+            title: "Control Testing Checklist",
+            description:
+                "Walk through the key steps used to evaluate control design, collect evidence, test operating effectiveness, document exceptions, and verify remediation.",
+            action: "View Checklist"
+        },
+        {
+            number: "RESOURCE 05",
+            title: "Risk Assessment & Risk Register",
+            description:
+                "Identify threats, vulnerabilities, likelihood, impact, existing controls, residual risk, ownership, and recommended treatment.",
+            action: "Explore Risk Tool"
+        }
+    ];
 
+    let currentGrcResource = 0;
+
+    const grcNumber = document.getElementById("grc-number");
+    const grcTitle = document.getElementById("grc-title");
+    const grcDescription = document.getElementById("grc-description");
+    const grcAction = document.getElementById("grc-action");
+    const grcProgress = document.getElementById("grc-progress");
+
+    function updateGrcResource() {
+        const resource = grcResources[currentGrcResource];
+
+        grcNumber.textContent = resource.number;
+        grcTitle.textContent = resource.title;
+        grcDescription.textContent = resource.description;
+        grcAction.textContent = resource.action;
+        grcProgress.textContent =
+            `${currentGrcResource + 1} / ${grcResources.length}`;
+    }
+
+    document.getElementById("grc-next").addEventListener("click", function () {
+        currentGrcResource =
+            (currentGrcResource + 1) % grcResources.length;
+
+        updateGrcResource();
+    });
+
+    document.getElementById("grc-prev").addEventListener("click", function () {
+        currentGrcResource =
+            (currentGrcResource - 1 + grcResources.length) %
+            grcResources.length;
+
+        updateGrcResource();
+    });
+const grcModal = document.getElementById("grc-modal");
+const grcModalOverlay = document.getElementById("grc-modal-overlay");
+const grcModalClose = document.getElementById("grc-modal-close");
+const grcModalTitle = document.getElementById("grc-modal-title");
+const grcModalIntro = document.getElementById("grc-modal-intro");
+const grcModalContent = document.getElementById("grc-modal-content");
+
+function openGrcModal() {
+    grcModal.classList.add("active");
+    grcModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+}
+
+function closeGrcModal() {
+    grcModal.classList.remove("active");
+    grcModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+}
+
+grcModalClose.addEventListener("click", closeGrcModal);
+grcModalOverlay.addEventListener("click", closeGrcModal);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && grcModal.classList.contains("active")) {
+        closeGrcModal();
+    }
+});
+
+const phishingQuestions = [
+    {
+        text: "Does the sender's email domain look unusual, misspelled, or different from the organization they claim to represent?",
+        weight: 2
+    },
+    {
+        text: "Does the message create unusual urgency, pressure, or fear to make you act quickly?",
+        weight: 1
+    },
+    {
+        text: "Does the message ask you to enter or provide a password, verification code, or other login information?",
+        weight: 3
+    },
+    {
+        text: "Does the message ask you to approve an unexpected MFA or authentication request?",
+        weight: 3
+    },
+    {
+        text: "Does the message contain an unexpected attachment or file?",
+        weight: 2
+    },
+    {
+        text: "Does the message contain a link you were not expecting or that leads somewhere different from the displayed address?",
+        weight: 2
+    },
+    {
+        text: "Does the message request money, gift cards, banking information, a wire transfer, or a change to payment details?",
+        weight: 3
+    },
+    {
+        text: "Is the request unusual for the person or organization that supposedly sent it?",
+        weight: 2
+    },
+    {
+        text: "Does the message ask you to bypass a normal process, security control, or approval procedure?",
+        weight: 3
+    },
+    {
+        text: "Are you unable to independently verify the request using a trusted phone number, known website, or separate communication channel?",
+        weight: 2
+    }
+];
+const vendorRiskQuestions = [
+    {
+        text: "Will the vendor access, store, process, or transmit sensitive company or customer data?",
+        weight: 3
+    },
+    {
+        text: "Will the vendor have remote or privileged access to internal systems?",
+        weight: 3
+    },
+    {
+        text: "Does the vendor lack multi-factor authentication for administrative or remote access?",
+        weight: 3
+    },
+    {
+        text: "Does the vendor lack encryption for sensitive data at rest or in transit?",
+        weight: 3
+    },
+    {
+        text: "Does the vendor lack a documented incident response process?",
+        weight: 2
+    },
+    {
+        text: "Is the vendor unable to provide recent independent security assurance, such as a SOC 2 report or equivalent assessment?",
+        weight: 2
+    },
+    {
+        text: "Does the vendor lack a formal vulnerability management or patching process?",
+        weight: 2
+    },
+    {
+        text: "Does the vendor use subcontractors or other third parties without clearly defined security oversight?",
+        weight: 2
+    },
+    {
+        text: "Are breach notification requirements unclear or missing from the agreement?",
+        weight: 2
+    },
+    {
+        text: "Does the vendor lack documented backup, recovery, or business continuity procedures?",
+        weight: 2
+    },
+    {
+        text: "Is ownership of the vendor relationship or security review unclear internally?",
+        weight: 1
+    },
+    {
+        text: "Has the vendor experienced a recent security incident that has not been fully explained or remediated?",
+        weight: 3
+    }
+];
+const controlMappings = [
+    {
+        theme: "Access Control",
+        soc2: "Logical access controls support the Security criteria by limiting access to authorized users.",
+        sox: "Access controls help protect financially significant systems and support reliable financial reporting.",
+        pci: "Access to system components and cardholder data should be restricted based on business need.",
+        example: "Access is granted only to approved users based on job responsibilities.",
+        evidence: "User access lists, approval tickets, role assignments, access-review records."
+    },
+    {
+        theme: "Privileged Access",
+        soc2: "Elevated access should be restricted, authorized, and monitored.",
+        sox: "Administrator access to systems supporting financial reporting should be limited and reviewed.",
+        pci: "Privileged accounts should be controlled and monitored to reduce unauthorized access.",
+        example: "Administrative privileges are limited to approved personnel and reviewed regularly.",
+        evidence: "Privileged-account lists, PAM records, administrator logs, periodic access reviews."
+    },
+    {
+        theme: "Authentication & MFA",
+        soc2: "Strong authentication supports protection against unauthorized access.",
+        sox: "MFA can strengthen access controls over sensitive and financially relevant systems.",
+        pci: "Multi-factor authentication is required for specified access scenarios.",
+        example: "MFA is required for administrative and remote access.",
+        evidence: "Identity-provider settings, MFA policy, authentication configuration, enrollment records."
+    },
+    {
+        theme: "Logging & Monitoring",
+        soc2: "Security-relevant activity should be logged and monitored for suspicious events.",
+        sox: "Logging can support oversight of changes, access, and activity affecting key systems.",
+        pci: "Audit logs should be generated, protected, retained, and reviewed.",
+        example: "Security logs are centrally collected and monitored for suspicious activity.",
+        evidence: "SIEM configuration, log-retention settings, sample alerts, review records."
+    },
+    {
+        theme: "Change Management",
+        soc2: "System changes should be authorized, tested, documented, and controlled.",
+        sox: "Change management is a core IT General Control supporting reliable financial systems.",
+        pci: "Changes to in-scope systems should follow controlled and documented processes.",
+        example: "Production changes require approval, testing, and documentation before implementation.",
+        evidence: "Change tickets, approvals, test results, implementation records."
+    },
+    {
+        theme: "Incident Response",
+        soc2: "Organizations should detect, respond to, and recover from security incidents.",
+        sox: "Incident response can support continuity and reliability of financially significant systems.",
+        pci: "Organizations should maintain and test an incident-response plan.",
+        example: "Security incidents are escalated, contained, documented, and reviewed.",
+        evidence: "Incident-response plan, incident tickets, escalation records, post-incident reports."
+    },
+    {
+        theme: "Data Protection",
+        soc2: "Sensitive information should be protected from unauthorized disclosure or modification.",
+        sox: "Controls protect business-critical and financial information from unauthorized access or change.",
+        pci: "Cardholder data must be protected during storage and transmission.",
+        example: "Sensitive data is encrypted at rest and in transit.",
+        evidence: "Encryption settings, TLS configuration, key-management records, data-handling standards."
+    },
+    {
+        theme: "Vulnerability Management",
+        soc2: "Organizations should identify and address vulnerabilities that could affect system security.",
+        sox: "Vulnerability management can support the reliability and security of financially relevant systems.",
+        pci: "Regular vulnerability scanning, patching, and remediation are required.",
+        example: "Critical vulnerabilities are remediated within defined risk-based timelines.",
+        evidence: "Scan reports, remediation tickets, patch records, exception documentation."
+    },
+    {
+        theme: "Third-Party Risk",
+        soc2: "Third parties affecting security commitments should be evaluated and monitored.",
+        sox: "Service providers supporting financial systems may require oversight and control assurance.",
+        pci: "Third-party service providers with access to cardholder data or systems must be managed.",
+        example: "Vendors with access to sensitive systems are risk-assessed before onboarding.",
+        evidence: "Vendor questionnaires, contracts, SOC reports, security-review records."
+    },
+    {
+        theme: "User Access Reviews",
+        soc2: "User access should remain appropriate as roles and responsibilities change.",
+        sox: "Periodic access reviews help demonstrate continued effectiveness of IT General Controls.",
+        pci: "Access rights should be reviewed and adjusted as needed.",
+        example: "Managers review user access quarterly and remove unnecessary privileges.",
+        evidence: "Quarterly access reviews, approval records, terminated-user samples, removal evidence."
+    }
+];
+const controlTestingSteps = [
+    {
+        title: "Control Objective",
+        description:
+            "Understand what the control is intended to accomplish and which risk it is designed to reduce.",
+        items: [
+            "Identify the stated control objective.",
+            "Identify the risk the control addresses.",
+            "Confirm the control applies to the relevant systems, process, or population.",
+            "Determine who owns the control."
+        ]
+    },
+    {
+        title: "Evidence Requested",
+        description:
+            "Determine what evidence is needed to demonstrate that the control exists and has operated.",
+        items: [
+            "Request documentation describing the control.",
+            "Identify system-generated or independently verifiable evidence.",
+            "Confirm the evidence covers the correct testing period.",
+            "Confirm the evidence is complete and comes from an appropriate source."
+        ]
+    },
+    {
+        title: "Test Performed",
+        description:
+            "Perform procedures that determine whether the control is designed appropriately and operating as expected.",
+        items: [
+            "Document the testing procedure.",
+            "Select an appropriate sample when needed.",
+            "Compare evidence against the control requirement.",
+            "Document observations and supporting evidence."
+        ]
+    },
+    {
+        title: "Test Result",
+        description:
+            "Determine whether the evidence supports a conclusion that the control operated effectively.",
+        items: [
+            "Determine whether the control passed or failed.",
+            "Document any incomplete or inconsistent evidence.",
+            "Confirm the conclusion is supported by the evidence reviewed.",
+            "Record the testing result clearly."
+        ]
+    },
+    {
+        title: "Exception",
+        description:
+            "Document any condition where the control did not operate as intended or evidence was insufficient.",
+        items: [
+            "Describe the exception factually.",
+            "Identify the affected system, account, transaction, or process.",
+            "Determine the potential risk created by the exception.",
+            "Identify whether the issue appears isolated or systemic."
+        ]
+    },
+    {
+        title: "Remediation",
+        description:
+            "Document how the organization plans to address the control weakness or exception.",
+        items: [
+            "Identify the remediation action.",
+            "Assign an accountable owner.",
+            "Establish a target completion date.",
+            "Document any temporary or compensating controls."
+        ]
+    },
+    {
+        title: "Retest",
+        description:
+            "Verify that remediation was completed and that the control now operates as intended.",
+        items: [
+            "Obtain updated evidence after remediation.",
+            "Repeat the relevant testing procedure.",
+            "Confirm the original exception has been resolved.",
+            "Document the final retest conclusion."
+        ]
+    }
+];
+function loadPhishingAssessment() {
+    grcModalTitle.textContent = "Phishing Message Assessment";
+
+    grcModalIntro.textContent =
+        "Answer the questions below based on the message you are reviewing. This is an educational screening tool and should be used alongside your organization's reporting and verification procedures.";
+
+    let html = '<form id="phishing-form">';
+
+    phishingQuestions.forEach(function (question, index) {
+        html += `
+            <div class="phishing-question">
+                <h3>${index + 1}. ${question.text}</h3>
+
+                <div class="phishing-options">
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="phishing-${index}"
+                            value="yes"
+                            required
+                        >
+                        Yes
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="phishing-${index}"
+                            value="no"
+                        >
+                        No
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="phishing-${index}"
+                            value="unsure"
+                        >
+                        Unsure
+                    </label>
+
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+        <div class="grc-assessment-actions">
+            <button class="button button-primary" type="submit">
+                Evaluate Message
+            </button>
+
+            <button
+                class="grc-secondary-button"
+                type="button"
+                id="phishing-reset"
+            >
+                Reset
+            </button>
+        </div>
+
+        <div id="phishing-result"></div>
+    `;
+
+    html += "</form>";
+
+    grcModalContent.innerHTML = html;
+
+    const phishingForm = document.getElementById("phishing-form");
+    const phishingReset = document.getElementById("phishing-reset");
+
+    phishingForm.addEventListener("submit", evaluatePhishingAssessment);
+
+    phishingReset.addEventListener("click", function () {
+        phishingForm.reset();
+        document.getElementById("phishing-result").innerHTML = "";
+    });
+
+    openGrcModal();
+}
+
+function evaluatePhishingAssessment(event) {
+    event.preventDefault();
+
+    let score = 0;
+    let warningCount = 0;
+
+    phishingQuestions.forEach(function (question, index) {
+        const selected = document.querySelector(
+            `input[name="phishing-${index}"]:checked`
+        );
+
+        if (!selected) {
+            return;
+        }
+
+        if (selected.value === "yes") {
+            score += question.weight;
+            warningCount++;
+        }
+
+        if (selected.value === "unsure") {
+            score += 1;
+        }
+    });
+
+    let riskClass;
+    let riskTitle;
+    let recommendation;
+
+    if (score <= 4) {
+        riskClass = "low";
+        riskTitle = "Lower Concern";
+        recommendation =
+            "Few strong phishing indicators were identified. Continue to use normal caution, verify unexpected requests, and avoid entering credentials through links received in unsolicited messages.";
+    } else if (score <= 10) {
+        riskClass = "medium";
+        riskTitle = "Verification Recommended";
+        recommendation =
+            "Several suspicious indicators were identified. Do not act on the message until the sender or request has been independently verified using a trusted communication method.";
+    } else {
+        riskClass = "high";
+        riskTitle = "High Risk";
+        recommendation =
+            "Multiple strong phishing indicators were identified. Do not click links, open attachments, provide credentials, approve authentication requests, or send money. Report the message through your organization's security or phishing-reporting process.";
+    }
+
+    document.getElementById("phishing-result").innerHTML = `
+        <div class="phishing-result ${riskClass}">
+            <h3>${riskTitle}</h3>
+
+            <p>
+                The assessment identified ${warningCount}
+                direct warning indicator${warningCount === 1 ? "" : "s"}.
+            </p>
+
+            <p style="margin-top: 10px;">
+                ${recommendation}
+            </p>
+
+            <p style="margin-top: 14px; font-size: 0.88rem; color: #64748b;">
+                This result is a general educational screening assessment and
+                does not guarantee that a message is legitimate or malicious.
+            </p>
+        </div>
+    `;
+
+    document
+        .getElementById("phishing-result")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+function loadVendorRiskAssessment() {
+    grcModalTitle.textContent = "Vendor Risk Questionnaire";
+
+    grcModalIntro.textContent =
+        "Answer the questions below based on the third party being reviewed. This tool is intended to help identify areas that may require deeper due diligence and does not represent a formal vendor-risk determination.";
+
+    let html = '<form id="vendor-risk-form">';
+
+    vendorRiskQuestions.forEach(function (question, index) {
+        html += `
+            <div class="phishing-question">
+                <h3>${index + 1}. ${question.text}</h3>
+
+                <div class="phishing-options">
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="vendor-${index}"
+                            value="yes"
+                            required
+                        >
+                        Yes
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="vendor-${index}"
+                            value="no"
+                        >
+                        No
+                    </label>
+
+                    <label class="phishing-option">
+                        <input
+                            type="radio"
+                            name="vendor-${index}"
+                            value="unsure"
+                        >
+                        Unsure
+                    </label>
+
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+        <div class="grc-assessment-actions">
+            <button class="button button-primary" type="submit">
+                Evaluate Vendor
+            </button>
+
+            <button
+                class="grc-secondary-button"
+                type="button"
+                id="vendor-reset"
+            >
+                Reset
+            </button>
+        </div>
+
+        <div id="vendor-result"></div>
+    `;
+
+    html += "</form>";
+
+    grcModalContent.innerHTML = html;
+
+    const vendorForm = document.getElementById("vendor-risk-form");
+    const vendorReset = document.getElementById("vendor-reset");
+
+    vendorForm.addEventListener("submit", evaluateVendorRisk);
+
+    vendorReset.addEventListener("click", function () {
+        vendorForm.reset();
+        document.getElementById("vendor-result").innerHTML = "";
+    });
+
+    openGrcModal();
+}
+function loadControlMapping() {
+    grcModalTitle.textContent = "Common Cybersecurity Control Mapping";
+
+    grcModalIntro.textContent =
+        "Explore how common security-control themes overlap across SOC 2, SOX-related IT General Controls, and PCI DSS. These frameworks serve different purposes, so the goal is to compare related control objectives rather than treat them as identical.";
+
+    let html = `
+        <div style="margin-bottom: 24px;">
+            <label for="control-theme-select" style="display:block; font-weight:700; margin-bottom:8px;">
+                Select a control theme
+            </label>
+
+            <select
+                id="control-theme-select"
+                style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid var(--border);
+                    border-radius: 8px;
+                    font-family: inherit;
+                    font-size: 0.95rem;
+                    background: white;
+                "
+            >
+    `;
+
+    controlMappings.forEach(function (mapping, index) {
+        html += `
+            <option value="${index}">
+                ${mapping.theme}
+            </option>
+        `;
+    });
+
+    html += `
+            </select>
+        </div>
+
+        <div id="control-mapping-result"></div>
+    `;
+
+    grcModalContent.innerHTML = html;
+
+    const controlThemeSelect = document.getElementById("control-theme-select");
+
+    function renderControlMapping(index) {
+        const mapping = controlMappings[index];
+
+        document.getElementById("control-mapping-result").innerHTML = `
+            <div class="phishing-result">
+                <h3>${mapping.theme}</h3>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>SOC 2</strong></p>
+                    <p style="margin-top: 5px;">${mapping.soc2}</p>
+                </div>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>SOX / ITGC</strong></p>
+                    <p style="margin-top: 5px;">${mapping.sox}</p>
+                </div>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>PCI DSS</strong></p>
+                    <p style="margin-top: 5px;">${mapping.pci}</p>
+                </div>
+
+                <div style="margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border);">
+                    <p><strong>Example Control</strong></p>
+                    <p style="margin-top: 5px;">${mapping.example}</p>
+                </div>
+
+                <div style="margin-top: 18px;">
+                    <p><strong>Example Audit Evidence</strong></p>
+                    <p style="margin-top: 5px;">${mapping.evidence}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    controlThemeSelect.addEventListener("change", function () {
+        renderControlMapping(Number(controlThemeSelect.value));
+    });
+
+    renderControlMapping(0);
+
+    openGrcModal();
+}
+function evaluateVendorRisk(event) {
+    event.preventDefault();
+
+    let score = 0;
+    let concernCount = 0;
+
+    vendorRiskQuestions.forEach(function (question, index) {
+        const selected = document.querySelector(
+            `input[name="vendor-${index}"]:checked`
+        );
+
+        if (!selected) {
+            return;
+        }
+
+        if (selected.value === "yes") {
+            score += question.weight;
+            concernCount++;
+        }
+
+        if (selected.value === "unsure") {
+            score += 1;
+        }
+    });
+
+    let riskClass;
+    let riskTitle;
+    let recommendation;
+
+    if (score <= 6) {
+        riskClass = "low";
+        riskTitle = "Lower Vendor Risk";
+        recommendation =
+            "Few major risk indicators were identified. Continue standard due diligence, confirm contractual requirements, and maintain periodic review of the vendor relationship.";
+    } else if (score <= 14) {
+        riskClass = "medium";
+        riskTitle = "Moderate Review Needed";
+        recommendation =
+            "Several areas may require additional validation. Obtain supporting evidence, clarify security responsibilities, and resolve material gaps before relying heavily on the vendor.";
+    } else {
+        riskClass = "high";
+        riskTitle = "Elevated Vendor Risk";
+        recommendation =
+            "Multiple significant risk indicators were identified. A deeper security review should be completed before approval, including evidence review, contract requirements, access limitations, remediation commitments, and management acceptance of any remaining risk.";
+    }
+
+    document.getElementById("vendor-result").innerHTML = `
+        <div class="phishing-result ${riskClass}">
+            <h3>${riskTitle}</h3>
+
+            <p>
+                The assessment identified ${concernCount}
+                direct risk concern${concernCount === 1 ? "" : "s"}.
+            </p>
+
+            <p style="margin-top: 10px;">
+                ${recommendation}
+            </p>
+
+            <p style="margin-top: 14px; font-size: 0.88rem; color: #64748b;">
+                This questionnaire is an educational portfolio tool and is not
+                a substitute for a formal third-party risk assessment.
+            </p>
+        </div>
+    `;
+
+    document
+        .getElementById("vendor-result")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+function loadControlTestingChecklist() {
+    grcModalTitle.textContent = "Control Testing Checklist";
+
+    grcModalIntro.textContent =
+        "Walk through a practical control-testing workflow from understanding the control objective through remediation and retesting. Check off the items as you review each stage.";
+
+    let currentControlTestStep = 0;
+
+    grcModalContent.innerHTML = `
+        <div class="control-test-progress">
+            <strong id="control-test-progress-text"></strong>
+
+            <div class="control-test-progress-bar">
+                <div
+                    class="control-test-progress-fill"
+                    id="control-test-progress-fill"
+                ></div>
+            </div>
+        </div>
+
+        <div id="control-test-content"></div>
+    `;
+
+    function renderControlTestStep() {
+        const step = controlTestingSteps[currentControlTestStep];
+
+        let itemHtml = "";
+
+        step.items.forEach(function (item, index) {
+            itemHtml += `
+                <label class="control-test-item">
+                    <input
+                        type="checkbox"
+                        class="control-test-checkbox"
+                        data-step="${currentControlTestStep}"
+                        data-item="${index}"
+                    >
+                    <span>${item}</span>
+                </label>
+            `;
+        });
+
+        document.getElementById("control-test-content").innerHTML = `
+            <div class="control-test-card">
+
+                <div class="control-test-stage-label">
+                    Stage ${currentControlTestStep + 1}
+                </div>
+
+                <h3>${step.title}</h3>
+
+                <p>
+                    ${step.description}
+                </p>
+
+                <div class="control-test-items">
+                    ${itemHtml}
+                </div>
+
+                <div class="control-test-nav">
+
+                    <button
+                        class="grc-secondary-button"
+                        type="button"
+                        id="control-test-prev"
+                        ${currentControlTestStep === 0 ? "disabled" : ""}
+                    >
+                        ← Previous
+                    </button>
+
+                    <button
+                        class="button button-primary"
+                        type="button"
+                        id="control-test-next"
+                    >
+                        ${
+                            currentControlTestStep === controlTestingSteps.length - 1
+                                ? "Finish Checklist"
+                                : "Next Stage →"
+                        }
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        document.getElementById("control-test-progress-text").textContent =
+            `Stage ${currentControlTestStep + 1} of ${controlTestingSteps.length}`;
+
+        document.getElementById("control-test-progress-fill").style.width =
+            `${((currentControlTestStep + 1) / controlTestingSteps.length) * 100}%`;
+
+        const previousButton =
+            document.getElementById("control-test-prev");
+
+        const nextButton =
+            document.getElementById("control-test-next");
+
+        previousButton.addEventListener("click", function () {
+            if (currentControlTestStep > 0) {
+                currentControlTestStep--;
+                renderControlTestStep();
+            }
+        });
+
+        nextButton.addEventListener("click", function () {
+            if (currentControlTestStep < controlTestingSteps.length - 1) {
+                currentControlTestStep++;
+                renderControlTestStep();
+                return;
+            }
+
+            document.getElementById("control-test-content").innerHTML = `
+                <div class="phishing-result low">
+
+                    <h3>Control Testing Workflow Complete</h3>
+
+                    <p>
+                        You have reviewed the full control-testing lifecycle:
+                        control objective, evidence collection, testing,
+                        exceptions, remediation, and retesting.
+                    </p>
+
+                    <p style="margin-top: 12px;">
+                        In an actual audit, each conclusion should be supported
+                        by documented evidence and retained in the audit workpapers.
+                    </p>
+
+                </div>
+            `;
+
+            document.getElementById("control-test-progress-text").textContent =
+                "Checklist Complete";
+
+            document.getElementById("control-test-progress-fill").style.width =
+                "100%";
+        });
+    }
+
+    renderControlTestStep();
+
+    openGrcModal();
+}
+function loadRiskAssessmentTool() {
+    grcModalTitle.textContent = "Risk Assessment & Risk Register";
+
+    grcModalIntro.textContent =
+        "Document a risk scenario, estimate likelihood and impact, and create a simple risk-register entry. This tool uses a basic likelihood × impact model for educational and portfolio purposes.";
+
+    grcModalContent.innerHTML = `
+        <form id="risk-assessment-form">
+
+            <div class="risk-tool-grid">
+
+                <div class="risk-field full-width">
+                    <label for="risk-title">Risk Title</label>
+                    <input
+                        type="text"
+                        id="risk-title"
+                        placeholder="Example: Unauthorized access to customer records"
+                        required
+                    >
+                </div>
+
+                <div class="risk-field full-width">
+                    <label for="risk-description">Risk Scenario</label>
+                    <textarea
+                        id="risk-description"
+                        placeholder="Describe the threat, vulnerability, and potential business impact."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-likelihood">Likelihood</label>
+                    <select id="risk-likelihood" required>
+                        <option value="">Select likelihood</option>
+                        <option value="1">1 - Rare</option>
+                        <option value="2">2 - Unlikely</option>
+                        <option value="3">3 - Possible</option>
+                        <option value="4">4 - Likely</option>
+                        <option value="5">5 - Almost Certain</option>
+                    </select>
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-impact">Impact</label>
+                    <select id="risk-impact" required>
+                        <option value="">Select impact</option>
+                        <option value="1">1 - Minimal</option>
+                        <option value="2">2 - Minor</option>
+                        <option value="3">3 - Moderate</option>
+                        <option value="4">4 - Major</option>
+                        <option value="5">5 - Severe</option>
+                    </select>
+                </div>
+
+                <div class="risk-field full-width">
+                    <label for="risk-controls">Existing Controls</label>
+                    <textarea
+                        id="risk-controls"
+                        placeholder="Example: MFA, quarterly access reviews, centralized logging"
+                    ></textarea>
+                </div>
+
+                <div class="risk-field full-width">
+                    <label for="risk-treatment">Recommended Treatment</label>
+                    <textarea
+                        id="risk-treatment"
+                        placeholder="Describe how the risk should be mitigated, transferred, avoided, or accepted."
+                    ></textarea>
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-owner">Risk Owner</label>
+                    <input
+                        type="text"
+                        id="risk-owner"
+                        placeholder="Example: IAM Manager"
+                    >
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-date">Target Date</label>
+                    <input
+                        type="date"
+                        id="risk-date"
+                    >
+                </div>
+
+            </div>
+
+            <div class="grc-assessment-actions">
+                <button class="button button-primary" type="submit">
+                    Calculate Risk
+                </button>
+
+                <button
+                    class="grc-secondary-button"
+                    type="button"
+                    id="risk-reset"
+                >
+                    Reset
+                </button>
+            </div>
+
+            <div id="risk-result"></div>
+
+        </form>
+    `;
+
+    const riskForm = document.getElementById("risk-assessment-form");
+    const riskReset = document.getElementById("risk-reset");
+
+    riskForm.addEventListener("submit", evaluateRiskAssessment);
+
+    riskReset.addEventListener("click", function () {
+        riskForm.reset();
+        document.getElementById("risk-result").innerHTML = "";
+    });
+
+    openGrcModal();
+}
+
+function evaluateRiskAssessment(event) {
+    event.preventDefault();
+
+    const title = document.getElementById("risk-title").value;
+    const description = document.getElementById("risk-description").value;
+    const likelihood = Number(
+        document.getElementById("risk-likelihood").value
+    );
+    const impact = Number(
+        document.getElementById("risk-impact").value
+    );
+    const controls =
+        document.getElementById("risk-controls").value || "Not documented";
+    const treatment =
+        document.getElementById("risk-treatment").value || "Not documented";
+    const owner =
+        document.getElementById("risk-owner").value || "Not assigned";
+    const targetDate =
+        document.getElementById("risk-date").value || "Not assigned";
+
+    const score = likelihood * impact;
+
+    let riskClass;
+    let riskTitle;
+    let recommendation;
+
+    if (score <= 4) {
+        riskClass = "risk-score-low";
+        riskTitle = "Low Risk";
+        recommendation =
+            "The current risk score is relatively low. Continue monitoring the risk and confirm that existing controls remain effective.";
+    } else if (score <= 9) {
+        riskClass = "risk-score-medium";
+        riskTitle = "Moderate Risk";
+        recommendation =
+            "The risk should be reviewed and managed through documented controls, ownership, and an appropriate treatment plan.";
+    } else if (score <= 16) {
+        riskClass = "risk-score-high";
+        riskTitle = "High Risk";
+        recommendation =
+            "The risk warrants prioritized treatment, clear ownership, and active tracking until exposure is reduced.";
+    } else {
+        riskClass = "risk-score-critical";
+        riskTitle = "Critical Risk";
+        recommendation =
+            "The risk represents significant potential exposure and should receive prompt management attention, documented treatment, and close monitoring.";
+    }
+
+    document.getElementById("risk-result").innerHTML = `
+        <div class="risk-score-box ${riskClass}">
+            <h3>${riskTitle}</h3>
+
+            <p>
+                Inherent Risk Score:
+                <strong>${score} / 25</strong>
+                (${likelihood} likelihood × ${impact} impact)
+            </p>
+
+            <p style="margin-top: 10px;">
+                ${recommendation}
+            </p>
+
+            <div class="risk-register-summary">
+                <div>
+                    <strong>Risk:</strong><br>
+                    ${title}
+                </div>
+
+                <div>
+                    <strong>Scenario:</strong><br>
+                    ${description}
+                </div>
+
+                <div>
+                    <strong>Existing Controls:</strong><br>
+                    ${controls}
+                </div>
+
+                <div>
+                    <strong>Treatment:</strong><br>
+                    ${treatment}
+                </div>
+
+                <div>
+                    <strong>Owner:</strong><br>
+                    ${owner}
+                </div>
+
+                <div>
+                    <strong>Target Date:</strong><br>
+                    ${targetDate}
+                </div>
+            </div>
+
+            <p style="margin-top: 16px; font-size: 0.88rem; color: #64748b;">
+                This simplified risk matrix is intended as an educational
+                screening tool. Organizations should use their approved risk
+                methodology, thresholds, and governance processes for formal
+                risk decisions.
+            </p>
+        </div>
+    `;
+
+    document
+        .getElementById("risk-result")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+grcAction.addEventListener("click", function () {
+    if (currentGrcResource === 0) {
+        loadPhishingAssessment();
+        return;
+    }
+
+    if (currentGrcResource === 1) {
+        loadVendorRiskAssessment();
+        return;
+    }
+
+    if (currentGrcResource === 2) {
+        loadControlMapping();
+        return;
+    }
+
+    if (currentGrcResource === 3) {
+        loadControlTestingChecklist();
+        return;
+    }
+
+    if (currentGrcResource === 4) {
+        loadRiskAssessmentTool();
+        return;
+    }
+});
+</script>
 </body>
 </html>
