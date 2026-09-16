@@ -337,7 +337,44 @@
             color: #cbd5e1;
             max-width: 700px;
         }
+.case-study-highlight {
+    margin-top: 22px;
+    padding: 24px 28px;
+    background: #eef3f9;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blue);
+    border-radius: 12px;
+    transition: 0.2s ease;
+}
 
+.case-study-highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.case-study-highlight .case-study-label {
+    color: var(--blue);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.case-study-highlight h3 {
+    margin-bottom: 10px;
+}
+
+.case-study-highlight p {
+    color: var(--muted);
+    margin-bottom: 14px;
+    max-width: 900px;
+}
+
+.case-study-highlight a {
+    color: var(--blue);
+    font-weight: 600;
+}
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1095,7 +1132,35 @@ body.modal-open {
                 </a>
 
             </div>
+<div class="case-study-highlight">
 
+    <div class="case-study-label">
+        GRC & Incident Response Case Study
+    </div>
+
+    <h3>
+        Meridian Trust Bank Security Assessment & Incident Investigation
+    </h3>
+
+    <p>
+        A multi-day case study covering vulnerability assessment, CVE validation,
+        digital forensics, threat hunting, and incident response. I traced the
+        attack from initial exploitation through privilege escalation, persistence,
+        lateral movement, and data staging, then mapped attacker behavior to MITRE
+        ATT&CK and developed Sigma detection rules. The project concluded with
+        remediation priorities, containment and recovery planning, and a
+        post-incident review focused on control gaps and prevention.
+    </p>
+
+    <a
+        href="https://github.com/ryancarter33/cybersecurityforprofessionals/tree/main/grc"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        View GRC Case Study →
+    </a>
+
+</div>
             <div class="portfolio-grid">
 
                 <div class="portfolio-card">
