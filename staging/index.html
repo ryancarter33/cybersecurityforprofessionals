@@ -789,6 +789,95 @@
     margin-top: 22px;
     flex-wrap: wrap;
 }
+.risk-tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.risk-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.risk-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.risk-field label {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.risk-field input,
+.risk-field select,
+.risk-field textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: white;
+    color: var(--text);
+}
+
+.risk-field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.risk-score-box {
+    margin-top: 24px;
+    padding: 22px;
+    border-radius: 12px;
+    background: var(--background);
+    border: 1px solid var(--border);
+}
+
+.risk-score-box h3 {
+    margin-bottom: 8px;
+}
+
+.risk-score-low {
+    border-left: 5px solid #16a34a;
+}
+
+.risk-score-medium {
+    border-left: 5px solid #d97706;
+}
+
+.risk-score-high {
+    border-left: 5px solid #ea580c;
+}
+
+.risk-score-critical {
+    border-left: 5px solid #dc2626;
+}
+
+.risk-register-summary {
+    margin-top: 20px;
+    display: grid;
+    gap: 10px;
+}
+
+.risk-register-summary div {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+}
+
+@media (max-width: 650px) {
+    .risk-tool-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .risk-field.full-width {
+        grid-column: auto;
+    }
+}
 body.modal-open {
     overflow: hidden;
 }
@@ -2373,6 +2462,234 @@ function loadControlTestingChecklist() {
 
     openGrcModal();
 }
+function loadRiskAssessmentTool() {
+    grcModalTitle.textContent = "Risk Assessment & Risk Register";
+
+    grcModalIntro.textContent =
+        "Document a risk scenario, estimate likelihood and impact, and create a simple risk-register entry. This tool uses a basic likelihood × impact model for educational and portfolio purposes.";
+
+    grcModalContent.innerHTML = `
+        <form id="risk-assessment-form">
+
+            <div class="risk-tool-grid">
+
+                <div class="risk-field full-width">
+                    <label for="risk-title">Risk Title</label>
+                    <input
+                        type="text"
+                        id="risk-title"
+                        placeholder="Example: Unauthorized access to customer records"
+                        required
+                    >
+                </div>
+
+                <div class="risk-field full-width">
+                    <label for="risk-description">Risk Scenario</label>
+                    <textarea
+                        id="risk-description"
+                        placeholder="Describe the threat, vulnerability, and potential business impact."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-likelihood">Likelihood</label>
+                    <select id="risk-likelihood" required>
+                        <option value="">Select likelihood</option>
+                        <option value="1">1 - Rare</option>
+                        <option value="2">2 - Unlikely</option>
+                        <option value="3">3 - Possible</option>
+                        <option value="4">4 - Likely</option>
+                        <option value="5">5 - Almost Certain</option>
+                    </select>
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-impact">Impact</label>
+                    <select id="risk-impact" required>
+                        <option value="">Select impact</option>
+                        <option value="1">1 - Minimal</option>
+                        <option value="2">2 - Minor</option>
+                        <option value="3">3 - Moderate</option>
+                        <option value="4">4 - Major</option>
+                        <option value="5">5 - Severe</option>
+                    </select>
+                </div>
+
+                <div class="risk-field full-width">
+                    <label for="risk-controls">Existing Controls</label>
+                    <textarea
+                        id="risk-controls"
+                        placeholder="Example: MFA, quarterly access reviews, centralized logging"
+                    ></textarea>
+                </div>
+
+                <div class="risk-field full-width">
+                    <label for="risk-treatment">Recommended Treatment</label>
+                    <textarea
+                        id="risk-treatment"
+                        placeholder="Describe how the risk should be mitigated, transferred, avoided, or accepted."
+                    ></textarea>
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-owner">Risk Owner</label>
+                    <input
+                        type="text"
+                        id="risk-owner"
+                        placeholder="Example: IAM Manager"
+                    >
+                </div>
+
+                <div class="risk-field">
+                    <label for="risk-date">Target Date</label>
+                    <input
+                        type="date"
+                        id="risk-date"
+                    >
+                </div>
+
+            </div>
+
+            <div class="grc-assessment-actions">
+                <button class="button button-primary" type="submit">
+                    Calculate Risk
+                </button>
+
+                <button
+                    class="grc-secondary-button"
+                    type="button"
+                    id="risk-reset"
+                >
+                    Reset
+                </button>
+            </div>
+
+            <div id="risk-result"></div>
+
+        </form>
+    `;
+
+    const riskForm = document.getElementById("risk-assessment-form");
+    const riskReset = document.getElementById("risk-reset");
+
+    riskForm.addEventListener("submit", evaluateRiskAssessment);
+
+    riskReset.addEventListener("click", function () {
+        riskForm.reset();
+        document.getElementById("risk-result").innerHTML = "";
+    });
+
+    openGrcModal();
+}
+
+function evaluateRiskAssessment(event) {
+    event.preventDefault();
+
+    const title = document.getElementById("risk-title").value;
+    const description = document.getElementById("risk-description").value;
+    const likelihood = Number(
+        document.getElementById("risk-likelihood").value
+    );
+    const impact = Number(
+        document.getElementById("risk-impact").value
+    );
+    const controls =
+        document.getElementById("risk-controls").value || "Not documented";
+    const treatment =
+        document.getElementById("risk-treatment").value || "Not documented";
+    const owner =
+        document.getElementById("risk-owner").value || "Not assigned";
+    const targetDate =
+        document.getElementById("risk-date").value || "Not assigned";
+
+    const score = likelihood * impact;
+
+    let riskClass;
+    let riskTitle;
+    let recommendation;
+
+    if (score <= 4) {
+        riskClass = "risk-score-low";
+        riskTitle = "Low Risk";
+        recommendation =
+            "The current risk score is relatively low. Continue monitoring the risk and confirm that existing controls remain effective.";
+    } else if (score <= 9) {
+        riskClass = "risk-score-medium";
+        riskTitle = "Moderate Risk";
+        recommendation =
+            "The risk should be reviewed and managed through documented controls, ownership, and an appropriate treatment plan.";
+    } else if (score <= 16) {
+        riskClass = "risk-score-high";
+        riskTitle = "High Risk";
+        recommendation =
+            "The risk warrants prioritized treatment, clear ownership, and active tracking until exposure is reduced.";
+    } else {
+        riskClass = "risk-score-critical";
+        riskTitle = "Critical Risk";
+        recommendation =
+            "The risk represents significant potential exposure and should receive prompt management attention, documented treatment, and close monitoring.";
+    }
+
+    document.getElementById("risk-result").innerHTML = `
+        <div class="risk-score-box ${riskClass}">
+            <h3>${riskTitle}</h3>
+
+            <p>
+                Inherent Risk Score:
+                <strong>${score} / 25</strong>
+                (${likelihood} likelihood × ${impact} impact)
+            </p>
+
+            <p style="margin-top: 10px;">
+                ${recommendation}
+            </p>
+
+            <div class="risk-register-summary">
+                <div>
+                    <strong>Risk:</strong><br>
+                    ${title}
+                </div>
+
+                <div>
+                    <strong>Scenario:</strong><br>
+                    ${description}
+                </div>
+
+                <div>
+                    <strong>Existing Controls:</strong><br>
+                    ${controls}
+                </div>
+
+                <div>
+                    <strong>Treatment:</strong><br>
+                    ${treatment}
+                </div>
+
+                <div>
+                    <strong>Owner:</strong><br>
+                    ${owner}
+                </div>
+
+                <div>
+                    <strong>Target Date:</strong><br>
+                    ${targetDate}
+                </div>
+            </div>
+
+            <p style="margin-top: 16px; font-size: 0.88rem; color: #64748b;">
+                This simplified risk matrix is intended as an educational
+                screening tool. Organizations should use their approved risk
+                methodology, thresholds, and governance processes for formal
+                risk decisions.
+            </p>
+        </div>
+    `;
+
+    document
+        .getElementById("risk-result")
+        .scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
 grcAction.addEventListener("click", function () {
     if (currentGrcResource === 0) {
         loadPhishingAssessment();
@@ -2394,7 +2711,10 @@ grcAction.addEventListener("click", function () {
         return;
     }
 
-    alert("This resource is currently being built.");
+    if (currentGrcResource === 4) {
+        loadRiskAssessmentTool();
+        return;
+    }
 });
 </script>
 </body>
