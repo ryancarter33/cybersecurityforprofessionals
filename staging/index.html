@@ -375,6 +375,45 @@
     color: var(--blue);
     font-weight: 600;
 }
+.cascade-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.cascade-detail {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.cascade-detail h4 {
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.cascade-detail p {
+    color: var(--muted);
+    margin-bottom: 0;
+    font-size: 0.92rem;
+}
+
+.cascade-credit {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--blue);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+@media (max-width: 800px) {
+    .cascade-details {
+        grid-template-columns: 1fr;
+    }
+}
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1317,6 +1356,74 @@ body.modal-open {
         rel="noopener noreferrer"
     >
         View GRC Case Study →
+    </a>
+
+</div>
+<div class="case-study-highlight">
+
+    <div class="case-study-label">
+        Capstone Incident Response Project
+    </div>
+
+    <h3>
+        Cascade Community Bank Security & Incident Response Capstone
+    </h3>
+
+    <div class="cascade-credit">
+        Completed collaboratively by Ryan Carter & Carin Madden
+    </div>
+
+    <div class="cascade-details">
+
+        <div class="cascade-detail">
+            <h4>Incident Summary</h4>
+            <p>
+                The Cascade Community Bank capstone combined system hardening
+                with a simulated critical security incident involving phishing,
+                impersonation, compromised credentials, and unauthorized
+                privileged access. We worked through identification, containment,
+                eradication, and recovery while securing affected systems,
+                removing malicious artifacts, resetting exposed credentials,
+                documenting evidence, and restoring services.
+            </p>
+        </div>
+
+        <div class="cascade-detail">
+            <h4>Course Summary</h4>
+            <p>
+                Throughout the cybersecurity program, I gained practical
+                experience across system hardening, network security, PKI,
+                vulnerability management, incident response, digital forensics,
+                risk assessment, GRC, and technical documentation. The capstone
+                brought those areas together in an enterprise banking scenario
+                where technical decisions, communication, and security governance
+                all mattered at the same time.
+            </p>
+        </div>
+
+        <div class="cascade-detail">
+            <h4>Personal Reflection</h4>
+            <p>
+                At the beginning of the course, I understood many cybersecurity
+                concepts academically but had less confidence applying them in
+                real situations. By the end, I was much more comfortable
+                hardening systems, validating evidence, responding under
+                pressure, documenting decisions, and connecting technical
+                findings to business risk and GRC. My biggest improvement was
+                moving from knowing security concepts to understanding how and
+                when to apply them as part of a team.
+            </p>
+        </div>
+
+    </div>
+
+    <a
+        class="button button-primary"
+        href="assets/Cascade-Community-Bank-Incident-Response.pptx"
+        style="color: white; margin-top: 20px;"
+        download
+    >
+        Download Incident Presentation
     </a>
 
 </div>
