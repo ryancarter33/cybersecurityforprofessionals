@@ -1222,104 +1222,235 @@ body.modal-open {
         </div>
 
         <!-- TEKsystems Rising Talent Program takeaways -->
-        <div style="
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-            gap: 24px;
-            margin-top: 32px;
-            align-items: stretch;
-        ">
-            <div class="card" style="min-width: 0;">
-                <h3>Three Quotes From the Program</h3>
+<style>
+    .program-takeaways {
+        display: grid;
+        gap: 24px;
+        margin-top: 32px;
+    }
 
-                <blockquote style="margin: 20px 0; line-height: 1.7;">
-                    “Number one rule of cybersecurity is to protect human life”
-                </blockquote>
+    .program-takeaways .takeaway-card {
+        padding: clamp(24px, 4vw, 40px);
+        min-width: 0;
+    }
 
-                <blockquote style="margin: 20px 0; line-height: 1.7;">
-                    “When it comes to zero trust, never trust, always verify”
-                </blockquote>
+    .program-takeaways .takeaway-heading {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 24px;
+    }
 
-                <blockquote style="margin: 20px 0; line-height: 1.7;">
-                    “Proactively plan, effectively execute”
-                </blockquote>
-            </div>
+    .program-takeaways .takeaway-number {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        font-size: 16px;
+        font-weight: 700;
+    }
 
-            <div class="card" style="min-width: 0;">
-                <h3>Five Technical Terms That Interest Me</h3>
+    .program-takeaways h3 {
+        margin: 0;
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
 
-                <ul style="padding-left: 20px; line-height: 1.7;">
-                    <li style="margin-bottom: 14px;">
-                        <strong>Social Engineering:</strong>
-                        Manipulating people into sharing information or taking
-                        actions that compromise security.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Least Privilege:</strong>
-                        Giving users only the access needed to perform their work.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Risk Assessment:</strong>
-                        Evaluating threats, vulnerabilities, likelihood, and
-                        potential business impact.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Control Testing:</strong>
-                        Examining evidence to determine whether security
-                        safeguards work as intended.
-                    </li>
-                    <li>
-                        <strong>Public Key Infrastructure (PKI):</strong>
-                        Managing digital certificates and cryptographic keys
-                        to establish trust.
-                    </li>
-                </ul>
-            </div>
+    .program-takeaways .quote-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
 
-            <div class="card" style="min-width: 0;">
-                <h3>Seven Complex Concepts I Learned</h3>
+    .program-takeaways blockquote {
+        margin: 0;
+        padding-left: 18px;
+        border-left: 3px solid currentColor;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
 
-                <ol style="padding-left: 20px; line-height: 1.7;">
-                    <li style="margin-bottom: 14px;">
-                        <strong>Network Segmentation:</strong>
-                        Using network boundaries and firewall rules to restrict
-                        traffic and limit an attack’s reach.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Certificate Trust:</strong>
-                        Understanding how certificate authorities, trust chains,
-                        and TLS help verify identities.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Active Directory Permissions:</strong>
-                        Connecting users, groups, and resource permissions
-                        to enforce appropriate access.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Incident Coordination:</strong>
-                        Assigning priorities and coordinating response roles
-                        as evidence and circumstances change.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Evidence Correlation:</strong>
-                        Combining logs, account events, and network activity
-                        to reconstruct an attack.
-                    </li>
-                    <li style="margin-bottom: 14px;">
-                        <strong>Security Control Mapping:</strong>
-                        Connecting safeguards to requirements across
-                        multiple compliance frameworks.
-                    </li>
-                    <li>
-                        <strong>Recovery Validation:</strong>
-                        Checking that threats have been addressed and restored
-                        services are safe to use.
-                    </li>
-                </ol>
-            </div>
+    .program-takeaways .term-grid,
+    .program-takeaways .concept-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 36px;
+        margin: 0;
+    }
+
+    .program-takeaways dt,
+    .program-takeaways h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.5;
+    }
+
+    .program-takeaways dd,
+    .program-takeaways p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .program-takeaways .concept-grid {
+        padding-left: 22px;
+    }
+
+    .program-takeaways .concept-grid li {
+        padding-left: 6px;
+    }
+
+    @media (max-width: 760px) {
+        .program-takeaways .quote-grid,
+        .program-takeaways .term-grid,
+        .program-takeaways .concept-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="program-takeaways">
+
+    <div class="card takeaway-card">
+        <div class="takeaway-heading">
+            <span class="takeaway-number" aria-hidden="true">03</span>
+            <h3>Quotes That Stayed With Me</h3>
         </div>
 
+        <div class="quote-grid">
+            <blockquote>
+                “Number one rule of cybersecurity is to protect human life”
+            </blockquote>
+
+            <blockquote>
+                “When it comes to zero trust, never trust, always verify”
+            </blockquote>
+
+            <blockquote>
+                “Proactively plan, effectively execute”
+            </blockquote>
+        </div>
     </div>
+
+    <div class="card takeaway-card">
+        <div class="takeaway-heading">
+            <span class="takeaway-number" aria-hidden="true">05</span>
+            <h3>Technical Terms That Interest Me</h3>
+        </div>
+
+        <dl class="term-grid">
+            <div>
+                <dt>Social Engineering</dt>
+                <dd>
+                    How attackers manipulate trust to influence
+                    decisions and gain access.
+                </dd>
+            </div>
+
+            <div>
+                <dt>Least Privilege</dt>
+                <dd>
+                    Limiting access to what someone actually
+                    needs to do their job.
+                </dd>
+            </div>
+
+            <div>
+                <dt>Risk Assessment</dt>
+                <dd>
+                    Evaluating threats, vulnerabilities, likelihood,
+                    and business impact.
+                </dd>
+            </div>
+
+            <div>
+                <dt>Control Testing</dt>
+                <dd>
+                    Using evidence to check whether a security
+                    safeguard works as intended.
+                </dd>
+            </div>
+
+            <div>
+                <dt>Public Key Infrastructure (PKI)</dt>
+                <dd>
+                    Using certificates and cryptographic keys
+                    to establish digital trust.
+                </dd>
+            </div>
+        </dl>
+    </div>
+
+    <div class="card takeaway-card">
+        <div class="takeaway-heading">
+            <span class="takeaway-number" aria-hidden="true">07</span>
+            <h3>Complex Concepts I Learned</h3>
+        </div>
+
+        <ol class="concept-grid">
+            <li>
+                <h4>Network Segmentation</h4>
+                <p>
+                    Restricting traffic between systems to reduce
+                    exposure and limit lateral movement.
+                </p>
+            </li>
+
+            <li>
+                <h4>Certificate Trust</h4>
+                <p>
+                    Understanding how certificate authorities,
+                    trust chains, and TLS verify identities.
+                </p>
+            </li>
+
+            <li>
+                <h4>Active Directory Permissions</h4>
+                <p>
+                    Managing how users, groups, and resource
+                    permissions determine effective access.
+                </p>
+            </li>
+
+            <li>
+                <h4>Incident Coordination</h4>
+                <p>
+                    Assigning priorities and coordinating response
+                    teams as new evidence emerges.
+                </p>
+            </li>
+
+            <li>
+                <h4>Evidence Correlation</h4>
+                <p>
+                    Connecting logs, account events, and network
+                    activity to reconstruct an attack.
+                </p>
+            </li>
+
+            <li>
+                <h4>Security Control Mapping</h4>
+                <p>
+                    Connecting safeguards to requirements across
+                    different compliance frameworks.
+                </p>
+            </li>
+
+            <li>
+                <h4>Recovery Validation</h4>
+                <p>
+                    Verifying remediation and checking restored
+                    services before returning to normal operations.
+                </p>
+            </li>
+        </ol>
+    </div>
+
+</div>
 </section>
 
     <section id="skills" class="skills-section">
